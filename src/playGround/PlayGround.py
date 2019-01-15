@@ -1,6 +1,15 @@
 
 
 class Animal:
+    """
+    Das ist einDocstring in Python der über pydoc ausgelesen werden kann.
+    Hier kommt die Bechreibung der Klasse rein.
+
+    @name default value is zero.
+    @legs sooooo many legs...
+    @age default is 0.
+    """
+
     planet  = "earth"
     age = 0
     _isLiving = True
