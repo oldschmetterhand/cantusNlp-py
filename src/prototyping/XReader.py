@@ -8,11 +8,22 @@ class XReader:
         print("instantiating class")
 
     def readXml(self, path: str):
-        print("calling readXMl")
+        """"
+        Reads in given xml via using the etree library.
+
+        :param path: String of the path to the specific XML document.
+        :returns: ElementTree representation of the read in XML.
+        """
         return ElementTree.parse(path)
 
     def getRootTag(self, xTree: object):
-        print("calling getRoot")
+        """
+        Reads given xml (see param), accesses the root element
+        and calcs the it's tagname.
+        :param xTree: ElementTree instance of the XML. (from etree library)
+        :return: string value of the root-tag
+        """
+
         rootTag: str = xTree.getroot().tag
         return rootTag
 
