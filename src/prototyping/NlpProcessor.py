@@ -6,8 +6,8 @@ import src.prototyping.XReader as Xreader
 
 class NlpProcessor:
 
-    dirPath: str = ""
-    textMap: dict = {}
+    dirPath: str
+    textMap: dict
 
     _xreader: object
     _fileReader: object
