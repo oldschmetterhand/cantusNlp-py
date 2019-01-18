@@ -16,7 +16,7 @@ class XReader:
 
 # TestCalls from here
 reader = XReader()
-xml = reader.readXml("test01.xml")
+xml = reader.readXml("fragment_1a.xml")
 print(xml)
 
 #getRoot elem and print one childElemsText
@@ -24,11 +24,11 @@ root = reader.getRoot(xml)
 print(root[0][1].text)
 
 #get complete text via loop and concatination
-allElems = root.findall(".//")
-print(allElems)
+body = root.findall(".//{http://www.tei-c.org/ns/1.0}body//*")
+print(body)
 concat = ''
-for elem in allElems:
-    print(elem.text)
+for elem in body:
+    #print(elem.text)
     if elem.text is not None:
         concat += elem.text
 
