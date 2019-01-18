@@ -8,7 +8,9 @@ from cltk.tokenize.word import nltk_tokenize_words
 # test run ...> everything goes as expected
 dir = "C:/Users/Sebi/PycharmProjects/cantusNlp-py.git/resources/sampleData/"
 processor = NlpProcessor(dir)
-processor.loadLocalXml()
+processor.loadCorpus()
+# processor.retrieveLatinModels() # ...> loads the dataModels from the internet
+
 
 # test if everything is inside
 # for x in processor.textMap:
