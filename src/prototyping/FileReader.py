@@ -9,7 +9,7 @@ class FileReader:
 
     path: str = ""
 
-    def __init__(self,path):
+    def __init__(self, path: str):
         self.path = path
 
 
