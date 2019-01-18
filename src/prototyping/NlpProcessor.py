@@ -18,7 +18,7 @@ class NlpProcessor:
         self._fileReader = FileReader.FileReader(self.dirPath)
         self.textMap = {}  # initialize here
 
-    def addToMap(self, key: str, content: str):
+    def _addToMap(self, key: str, content: str):
         self.textMap[key] = content
 
     def loadCorpus(self):
@@ -39,7 +39,7 @@ class NlpProcessor:
             #print(bodyTxt)
             self.textMap[fileName] = bodyTxt
 
-    def getCorpus(self, fileName: str):
+    def getText(self, fileName: str):
         """
         Accesses the intern dictionary in which the read in corpora are saved under their
         filename as key-value. Value calls dictionary[key] ...> to access the data.
