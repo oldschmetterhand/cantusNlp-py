@@ -2,6 +2,8 @@
 import os
 
 # in here the file / directory loop operations etc.
+from typing import List
+
 
 class FileReader:
 
@@ -12,5 +14,6 @@ class FileReader:
 
 
     def listFiles(self):
-        return os.listdir(self.path)
+        fileList: List[str] = os.listdir(self.path)
+        return fileList
 
