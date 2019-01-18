@@ -39,11 +39,4 @@ class NlpProcessor:
         return self.textMap[fileName]
 
 
-# test run ...> everything goes as expected
-dir = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/sampledata/"
-processor = NlpProcessor(dir)
-processor.loadLocalXml()
 
-for x in processor.textMap:
-    print(x)
-    print(processor.textMap[x])
