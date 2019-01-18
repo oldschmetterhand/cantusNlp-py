@@ -16,6 +16,7 @@ class NlpProcessor:
         self.dirPath = dirPath
         self._xreader = Xreader.XReader()
         self._fileReader = FileReader.FileReader(self.dirPath)
+        self.textMap = {}  # initialize here
 
 
     def addToMap(self, key: str, content: str):
