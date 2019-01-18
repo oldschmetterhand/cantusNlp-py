@@ -1,4 +1,4 @@
-import prototyping.XReader as XReader
+import src.prototyping.XReader as XReader
 
 xreader = XReader.XReader()
 
@@ -11,7 +11,7 @@ xreader = XReader.XReader()
 
 
 # get the bodyTxt
-xTree = xreader.readXml("fragment_1a.xml")
+xTree = xreader.readXml("C:/Users\stoffse\PycharmProjects\CantusNlp\\resources\sampledata\\fragment_1a.xml")
 bodyTxt = xreader.getTeiBodyText(xTree)
 print(bodyTxt)
 
