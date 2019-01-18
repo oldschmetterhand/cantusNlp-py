@@ -6,20 +6,20 @@ from cltk.corpus.utils.importer import CorpusImporter
 
 class NlpProcessor:
 
-    dirPath: str
-    textMap: dict
+    _dirPath: str
+    _textMap: dict
 
     _xreader: object
     _fileReader: object
 
     def __init__(self, dirPath: str):
-        self.dirPath = dirPath
+        self._dirPath = dirPath
         self._xreader = Xreader.XReader()
-        self._fileReader = FileReader.FileReader(self.dirPath)
-        self.textMap = {}  # initialize here
+        self._fileReader = FileReader.FileReader(self._dirPath)
+        self._textMap = {}  # initialize here
 
     def _addToMap(self, key: str, content: str):
-        self.textMap[key] = content
+        self._textMap[key] = content
 
     def loadCorpus(self):
         """
@@ -32,12 +32,12 @@ class NlpProcessor:
         fileNameList = self._fileReader.listFiles()
         for fileName in fileNameList:
             # trying getting all the body texts.
-            path = self.dirPath + fileName
+            path = self._dirPath + fileName
             # print(path)
             xTree = self._xreader.readXml(path)
             bodyTxt = self._xreader.getTeiBodyText(xTree)
             #print(bodyTxt)
-            self.textMap[fileName] = bodyTxt
+            self._textMap[fileName] = bodyTxt
 
     def getText(self, fileName: str):
         """
@@ -47,7 +47,7 @@ class NlpProcessor:
         the filename the read in corpus is accessible.
         :return: the internally saved corpus
         """
-        corpus: str = self.textMap[fileName]
+        corpus: str = self._textMap[fileName]
         return corpus
 
     def retrieveLatinModels(self):

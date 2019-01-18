@@ -29,7 +29,7 @@ processor.loadCorpus()
 #my_latin_downloader.import_corpus('latin_text_latin_library')
 #my_latin_downloader.import_corpus('latin_models_cltk')
 
-txt = processor.textMap["fragment_1a.xml"]
+txt = processor._textMap["fragment_1a.xml"]
 
 sentenceTokenizer = TokenizeSentence('latin')
 sentences = sentenceTokenizer.tokenize_sentences(txt)
