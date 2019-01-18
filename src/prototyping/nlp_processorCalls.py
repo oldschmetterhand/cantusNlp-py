@@ -1,6 +1,7 @@
 
 from src.prototyping.NlpProcessor import NlpProcessor
-# from cltk.tokenize.sentence import TokenizeSentence
+
+#from cltk.tokenize.sentence import TokenizeSentence
 
 # test run ...> everything goes as expected
 dir = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/sampledata/"
@@ -14,6 +15,10 @@ for x in processor.textMap:
 
 
 
-##########NLP TRIES
+##########NLP TRIES#####
 
+#tokenizer = TokenizeSentence("latin")
 
+#myTokens = tokenizer.tokenize_sentences(processor.textMap["fragment_1a.xml"])
+
+#print(myTokens)
