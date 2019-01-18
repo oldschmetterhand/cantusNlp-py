@@ -21,6 +21,7 @@ processor.loadLocalXml()
 ##########NLP Procedure#####
 ############################
 
+# first git needs to be installed on the local machine!
 # i need to import the datamodels first! ...> run this first (don't need to repeat!)
 #my_latin_downloader = CorpusImporter('latin')
 #my_latin_downloader.import_corpus('latin_text_latin_library')
