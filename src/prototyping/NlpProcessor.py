@@ -64,6 +64,7 @@ class NlpProcessor:
     def wtokenizeWords(self, text: str):
         """
         Uses the latin word tokenizer from cltk to tokenize the words for given text.
+        Removes punctuation internally.
         :param text: Text to tokenize.
         :return: List comprehension of tokenized words.
         """
