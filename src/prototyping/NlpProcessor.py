@@ -2,7 +2,8 @@
 import src.prototyping.FileReader as FileReader
 import src.prototyping.XReader as Xreader
 from cltk.corpus.utils.importer import CorpusImporter
-
+from cltk.tokenize.word import nltk_tokenize_words
+from cltk.tokenize.word import WordTokenizer
 
 class NlpProcessor:
 
@@ -60,4 +61,19 @@ class NlpProcessor:
         latinDownloader.import_corpus('latin_text_latin_library')
         latinDownloader.import_corpus('latin_models_cltk')
 
+    def wtokenizeWords(self, text: str):
+        """
+        Uses the latin word tokenizer from cltk to tokenize the words for given text.
+        :param text: Text to tokenize.
+        :return: List comprehension of tokenized words.
+        """
+        text = text.lower()
+        print(text)
+        wordTokenizer = WordTokenizer("latin")
+        tokens = wordTokenizer.tokenize(text)
+        tokens: list = self._removePunctuation(tokens)
+        return tokens
 
+    def _removePunctuation(self, text: list):
+        noPuncts: list = [token for token in text if token not in ['.', ',', ':', ';']]
+        return noPuncts

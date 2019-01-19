@@ -44,7 +44,12 @@ class XReader:
         txt = txt.replace("\t", "")
         txt = txt.strip()
         txt = txt.replace("  ", "")  # remove duplicated space
+        txt = self._delEditorMarks(txt)
+        return txt
 
+    def _delEditorMarks(self, txt: str):
+        txt = txt.replace("[", "")
+        txt = txt.replace("]", "")  # quite specific for my current project(maybe not good here)
         return txt
 
 

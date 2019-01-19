@@ -11,6 +11,11 @@ processor = NlpProcessor(dir)
 processor.loadCorpus()
 # processor.retrieveLatinModels() # ...> loads the dataModels from the internet
 
+txt = processor.getText("fragment_1a.xml")
+txt = processor.wtokenizeWords(txt)
+
+print(txt)
+
 
 # test if everything is inside
 # for x in processor.textMap:
@@ -29,11 +34,11 @@ processor.loadCorpus()
 #my_latin_downloader.import_corpus('latin_text_latin_library')
 #my_latin_downloader.import_corpus('latin_models_cltk')
 
-txt = processor._textMap["fragment_1a.xml"]
+# txt = processor._textMap["fragment_1a.xml"]
 
-sentenceTokenizer = TokenizeSentence('latin')
-sentences = sentenceTokenizer.tokenize_sentences(txt)
-print(sentences)
+# sentenceTokenizer = TokenizeSentence('latin')
+# sentences = sentenceTokenizer.tokenize_sentences(txt)
+# print(sentences)
 
-wordTokens = nltk_tokenize_words(txt)
-print(wordTokens)
+# wordTokens = nltk_tokenize_words(txt)
+# print(wordTokens)
