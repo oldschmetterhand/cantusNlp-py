@@ -1,5 +1,6 @@
 
 from src.prototyping.NlpProcessor import NlpProcessor
+from collections import Counter
 
 from cltk.tokenize.sentence import TokenizeSentence
 from cltk.corpus.utils.importer import CorpusImporter
@@ -9,12 +10,23 @@ from cltk.tokenize.word import nltk_tokenize_words
 dir = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/sampledata/"
 processor = NlpProcessor(dir)
 processor.loadCorpus()
-processor.retrieveLatinModels() # ...> loads the dataModels from the internet
+# processor.retrieveLatinModels() # ...> loads the dataModels from the internet
 
 txt = processor.getText("fragment_1a.xml")
 txt = processor.wtokenizeWords(txt)
 
-print(txt)
+#print(txt)
+
+wordCount = processor.countWords(txt)
+
+#print(wordCount)
+
+noStops = processor.removeLatStopWords(txt)
+
+print(noStops)
+
+
+
 
 
 # test if everything is inside
