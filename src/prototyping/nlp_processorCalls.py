@@ -13,7 +13,7 @@ processor.loadCorpus()
 # processor.retrieveLatinModels() # ...> loads the dataModels from the internet
 
 txt = processor.getText("fragment_1a.xml")
-txt = processor.wtokenizeWords(txt)
+txt = processor.wtokenizeLatin(txt)
 
 #print(txt)
 

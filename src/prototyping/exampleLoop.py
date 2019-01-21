@@ -14,7 +14,7 @@ for key in map:
     print("loop")
 
     cur_txt = processor.getText(key)
-    tokenized_txt = processor.wtokenizeWords(cur_txt)
+    tokenized_txt = processor.wtokenizeLatin(cur_txt)
     try:
         lemmatized_txt = processor.lemmatizeLat(tokenized_txt)
         lemmatized_noStops = processor.removeLatStopWords(tokenized_txt)

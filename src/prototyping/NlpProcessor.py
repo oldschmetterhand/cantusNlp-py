@@ -64,7 +64,7 @@ class NlpProcessor:
         latinDownloader.import_corpus('latin_text_latin_library')
         latinDownloader.import_corpus('latin_models_cltk')
 
-    def wtokenizeWords(self, text: str):
+    def wtokenizeLatin(self, text: str):
         """
         Uses the latin word tokenizer from cltk to tokenize the words for given text.
         Removes punctuation internally.
