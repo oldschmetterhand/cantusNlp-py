@@ -91,6 +91,8 @@ class NlpProcessor:
         lemmata: list = lemmatizer.lemmatize(tokenized_words)
         return lemmata
 
+    def getTextMap(self):
+        return self._textMap
 
     def _removePunctuation(self, text: list):
         noPuncts: list = [token for token in text if token not in ['.', ',', ':', ';']]
