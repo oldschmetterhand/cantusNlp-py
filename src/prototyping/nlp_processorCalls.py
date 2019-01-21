@@ -6,10 +6,10 @@ from cltk.corpus.utils.importer import CorpusImporter
 from cltk.tokenize.word import nltk_tokenize_words
 
 # test run ...> everything goes as expected
-dir = "C:/Users/Sebi/PycharmProjects/cantusNlp-py.git/resources/sampleData/"
+dir = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/sampledata/"
 processor = NlpProcessor(dir)
 processor.loadCorpus()
-# processor.retrieveLatinModels() # ...> loads the dataModels from the internet
+processor.retrieveLatinModels() # ...> loads the dataModels from the internet
 
 txt = processor.getText("fragment_1a.xml")
 txt = processor.wtokenizeWords(txt)
