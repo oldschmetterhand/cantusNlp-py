@@ -23,11 +23,17 @@ wordCount = processor.countWords(txt)
 
 noStops = processor.removeLatStopWords(txt)
 
-print(noStops)
 
 
+lemmatized = processor.lemmatizeLat(txt)
 
+#print(lemmatized)
 
+lemmatized_noStops = processor.removeLatStopWords(lemmatized)
+
+lemmataCount = processor.countWords(lemmatized_noStops)
+
+print(lemmataCount)
 
 # test if everything is inside
 # for x in processor.textMap:

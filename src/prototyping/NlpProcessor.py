@@ -6,6 +6,7 @@ from cltk.tokenize.word import nltk_tokenize_words
 from cltk.tokenize.word import WordTokenizer
 from collections import Counter
 from cltk.stop.latin import STOPS_LIST
+from cltk.stem.lemma import LemmaReplacer
 
 class NlpProcessor:
 
@@ -84,6 +85,11 @@ class NlpProcessor:
     def removeLatStopWords(self, tokenized_text: list):
         removedStops: list[str] = [w for w in tokenized_text if not w in STOPS_LIST]
         return removedStops
+
+    def lemmatizeLat(self, tokenized_words: list):
+        lemmatizer = LemmaReplacer('latin')
+        lemmata: list = lemmatizer.lemmatize(tokenized_words)
+        return lemmata
 
 
     def _removePunctuation(self, text: list):
