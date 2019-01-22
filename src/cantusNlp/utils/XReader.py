@@ -29,7 +29,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: ElementTree):       #TODO change implemantation ...> move parts to String Refinery!
+    def getTeiBodyText(self, xTree: ElementTree):
         root: object = xTree.getroot()
         teiBody = root.findall(".//{http://www.tei-c.org/ns/1.0}body//*")
 
@@ -38,5 +38,4 @@ class XReader:
             if elem.text is not None:
                 concatStr += elem.text
 
-        concatStr = self._stripElemTxt(concatStr)
         return concatStr
