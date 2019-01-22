@@ -19,7 +19,7 @@ class XReader:
 
         return ElementTree.parse(path)
 
-    def getRootTag(self, xTree: object):
+    def getRootTag(self, xTree: ElementTree):
         """
         Reads given xml (see param), accesses the root element
         and calcs the it's tagname.
@@ -30,7 +30,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: object):
+    def getTeiBodyText(self, xTree: ElementTree):
         root: object = xTree.getroot()
         teiBody = root.findall(".//{http://www.tei-c.org/ns/1.0}body//*")
 
