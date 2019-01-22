@@ -8,16 +8,18 @@ class StringRefinery:
         print("")
 
     def refineElemTxt(self, txt: str):
-        txt = txt.replace("\n", "")
-        txt = txt.replace("\t", "")
+        txt = self.delEditorMarks(txt)
+        txt = txt.replace("\n", " ")
+        txt = txt.replace("\t", " ")
+
+        # at last whitespace operations
         txt = txt.strip()
         txt = txt.replace("  ", "")  # remove duplicated space
-        txt = self.delEditorMarks(txt)
         return txt
 
     def delEditorMarks(self, txt: str):
-        txt = txt.replace("[", "")
-        txt = txt.replace("]", "")  # quite specific for my current project(maybe not good here)
+        txt = txt.replace("[", " ")
+        txt = txt.replace("]", " ")  # quite specific for my current project(maybe not good here)
         return txt
 
     def getText(self):
