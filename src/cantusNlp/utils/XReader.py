@@ -10,10 +10,13 @@ class XReader:
     def readXml(self, path: str):
         """"
         Reads in given xml via using the etree library.
-
         :param path: String of the path to the specific XML document.
         :returns: ElementTree representation of the read in XML.
         """
+
+        if ".xml" not in path:
+            raise ValueError("No '.xml' found in given parameter: " + path + ". This methods only applies to xml")
+
         return ElementTree.parse(path)
 
     def getRootTag(self, xTree: object):
