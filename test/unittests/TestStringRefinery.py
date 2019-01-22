@@ -34,3 +34,14 @@ class Test_refineElemText(unittest.TestCase):
         exp = "rabbit bambus"
         act = strRefiner.refineElemTxt(sample)
         self.assertEqual(exp, act)
+
+
+class Test_replaceNumbs(unittest.TestCase):
+
+    def test_replacesNumbersInGivenString_throughWhitespace(self):
+        sample = "eel 8987 codfish"
+        exp = "eel      codfish"
+        act = strRefiner.replNumbers(sample)
+        self.assertEqual(exp, act)
+
+
