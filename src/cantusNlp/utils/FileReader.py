@@ -1,17 +1,16 @@
 
 import os
-
-# in here the file / directory loop operations etc.
 from typing import List
-
+import pathlib
 
 class FileReader:
 
+    _curProjectPath: str
     _path: str = ""
 
     def __init__(self, path: str):
         self._path = path
-
+        self._curProjectPath = self.calcPath(__file__)
 
     def listFiles(self, dirPath = None):
 
@@ -20,6 +19,11 @@ class FileReader:
 
         fileList: List[str] = os.listdir(dirPath)
         return fileList
+
+    def calcPath(self, file: object):
+        p: pathlib.Path = pathlib.Path(file)
+        return p
+
 
     def getPath(self):
         return self._path
