@@ -1,10 +1,9 @@
 import xml.etree.ElementTree as ElementTree
 
-
 class XReader:
 
     def __init__class(self):
-        print("instantiating class")
+        print("")
 
     def readXml(self, path: str):
         """"
