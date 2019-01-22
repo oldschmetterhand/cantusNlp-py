@@ -29,12 +29,11 @@ class XReader:
         return rootTag
 
     def getTeiBodyText(self, xTree: ElementTree):
-        root: object = xTree.getroot()
-        teiBody = root.findall(".//{http://www.tei-c.org/ns/1.0}body//*")
+        root: ElementTree.Element = xTree.getroot()
+        body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
 
-        concatStr: str = ''
-        for elem in teiBody:
-            if elem.text is not None:
-                concatStr += elem.text
+        concatStr = ""
+        for txt in body.itertext():
+            concatStr += txt
 
         return concatStr
