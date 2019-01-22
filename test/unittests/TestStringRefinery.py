@@ -8,6 +8,7 @@ curDir = str(curDir)
 fr = FileReader(curDir)
 strRefiner = StringRefinery()
 
+
 class Test_refineElemText(unittest.TestCase):
 
     def test_removesWhitespace_fromSampleInput(self):
@@ -32,6 +33,12 @@ class Test_refineElemText(unittest.TestCase):
     def test_cleansHighlyPollutedString_withNumbers(self):
         sample = "  2     312       rabbit      []          \n\n \t            bambus \n           934917394123        "
         exp = "rabbit bambus"
+        act = strRefiner.refineElemTxt(sample)
+        self.assertEqual(exp, act)
+
+    def test_pollutedStringWith_numbers_escapes_whitespace(self):
+        sample = "  I'm my neighbour 1233 high     312       rabbit      []          \n\n \t            bambus \n           934917394123        "
+        exp = "I'm my neighbour high rabbit bambus"
         act = strRefiner.refineElemTxt(sample)
         self.assertEqual(exp, act)
 
