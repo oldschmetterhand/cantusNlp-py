@@ -30,7 +30,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: ElementTree):
+    def getTeiBodyText(self, xTree: ElementTree):       #TODO change implemantation ...> move parts to String Refinery!
         root: object = xTree.getroot()
         teiBody = root.findall(".//{http://www.tei-c.org/ns/1.0}body//*")
 
@@ -42,7 +42,7 @@ class XReader:
         concatStr = self._stripElemTxt(concatStr)
         return concatStr
 
-    def _stripElemTxt(self, txt: str):
+    def _stripElemTxt(self, txt: str):                  # TODO completely move to StringRefinery
         txt = txt.replace("\n", "")
         txt = txt.replace("\t", "")
         txt = txt.strip()
@@ -50,27 +50,7 @@ class XReader:
         txt = self._delEditorMarks(txt)
         return txt
 
-    def _delEditorMarks(self, txt: str):
+    def _delEditorMarks(self, txt: str):                # TODO completely move
         txt = txt.replace("[", "")
         txt = txt.replace("]", "")  # quite specific for my current project(maybe not good here)
         return txt
-
-
-# # TestCalls from here
-# reader = XReader()
-# xml = reader.readXml("fragment_1a.xml")
-# print(xml)
-#
-# #getRoot elem and print one childElemsText
-# root = reader.getRoot(xml)
-# print(root[0][1].text)
-
-
-
-# looping through tags
-#allNodes = root.iter()
-
-#tree = ElementTree.parse('test01.xml')
-#print(ElementTree.tostring(tree, encoding='utf-8', method='text'))
-
-
