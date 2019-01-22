@@ -7,8 +7,12 @@ class FileReader:
 
     _path: str = ""
 
-    def __init__(self, path: str):
-        self._path = path
+    def __init__(self, path: str = None):
+
+        if path is None:
+            path = self.calcPath(__file__)
+
+        self._path = str(path)
 
     def listFiles(self, dirPath: str = None):
         """
