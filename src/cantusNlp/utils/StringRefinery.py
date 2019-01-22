@@ -11,6 +11,7 @@ class StringRefinery:
 
     def refineElemTxt(self, txt: str):
         txt = self.delEditorMarks(txt)
+        txt = self.replNumbers(txt)
         txt = txt.replace("\n", " ")
         txt = txt.replace("\t", " ")
 
@@ -25,7 +26,7 @@ class StringRefinery:
         return txt
 
     def replNumbers(self, txt: str):
-        remNumbs: str = re.sub("\d", " ", txt)
+        remNumbs: str = re.sub("\d+", " ", txt)  #FIXME need to access only one number and replace it with ONE whitespace!
         return remNumbs
 
 
