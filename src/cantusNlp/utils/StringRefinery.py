@@ -6,8 +6,10 @@ class StringRefinery:
 
     _text: str
 
-    def __init__(self):
-        print("")
+    def __init__(self, txt: str = None):
+        if txt is not None:
+            self.setText(txt)
+
 
     def refineElemTxt(self, txt: str):
         txt = self.replEditorMarks(txt)
@@ -32,3 +34,9 @@ class StringRefinery:
 
     def getText(self):
         return self._text
+
+    def setText(self, txt: str):
+        if len(txt) == 0:
+            raise ValueError(str(self.__class__) + ": An empty string was given for refinement.")
+
+        self._text = txt
