@@ -44,4 +44,9 @@ class Test_replaceNumbs(unittest.TestCase):
         act = strRefiner.replNumbers(sample)
         self.assertEqual(exp, act)
 
+    def test_resplacesNumberWithWhitespace_inStringWithManyNumbers(self):
+        sample = "eel8987codfish902138123parrot11111231244214124124141244124"
+        exp = "eel codfish parrot "
+        act = strRefiner.replNumbers(sample)
+        self.assertEqual(exp, act)
 
