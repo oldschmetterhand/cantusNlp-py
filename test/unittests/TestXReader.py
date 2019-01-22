@@ -1,5 +1,5 @@
 import unittest
-
+import xml.etree.ElementTree as ElementTree
 from src.cantusNlp.utils.XReader import XReader
 from src.cantusNlp.utils.FileReader import FileReader
 
@@ -27,6 +27,13 @@ class Test_readXMl(unittest.TestCase):
         self.assertRaises(ValueError, xreader.readXml, wrongDir)
 
 
+class Test_getRootTag(unittest.TestCase):
+
+    def test_returnsExpectedRoot_ofGivenXml(self):
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        exp = "{http://www.tei-c.org/ns/1.0}TEI"
+        act = str(xreader.getRootTag(testXml))
+        self.assertEqual(exp, act)
 
 
 
