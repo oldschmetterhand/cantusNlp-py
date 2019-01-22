@@ -19,6 +19,13 @@ class FileReader:
         return fileList
 
     def calcPath(self, file: object):
+        """
+        Returns the given file's path as Path object from pathlib.
+        Further operation like .name are therefore possible ..> see
+        doc from pathlib.
+        :param file: best is to give __file__ as input param.
+        :return: Given file's path as Path instance from pathlib.
+        """
         p: Path = Path(file)
         return p
 
