@@ -10,7 +10,7 @@ class FileReader:
     def __init__(self, path: str):
         self._path = path
 
-    def listFiles(self, dirPath = None):
+    def listFiles(self, dirPath: str = None):
         """
         Lists all files of optionally given directory.
         :param dirPath: optional specifies which folder should be listed.
