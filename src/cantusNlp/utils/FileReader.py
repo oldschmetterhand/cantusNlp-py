@@ -11,6 +11,12 @@ class FileReader:
         self._path = path
 
     def listFiles(self, dirPath = None):
+        """
+        Lists all files of optionally given directory.
+        :param dirPath: optional specifies which folder should be listed.
+        Otherwise will access path given at instantiation.
+        :return: List of strings with file and folder-names inside (e.g. XYZ.xml).
+        """
 
         if dirPath is None:
             dirPath = self.getPath()
