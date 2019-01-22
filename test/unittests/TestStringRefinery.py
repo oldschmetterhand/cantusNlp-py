@@ -57,3 +57,14 @@ class Test_replaceNumbs(unittest.TestCase):
         act = strRefiner.replNumbers(sample)
         self.assertEqual(exp, act)
 
+
+class Test_replEditorMarks(unittest.TestCase):
+
+    def test_correctRemovalOfParenthesis(self):
+        sample = "[]banana[]"
+        exp = "  banana  "  # no whitespace removal in the method
+        act = strRefiner.replEditorMarks(sample)
+        self.assertEqual(exp, act)
+
+
+
