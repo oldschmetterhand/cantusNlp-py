@@ -12,7 +12,7 @@ class FileReader:
         if path is None:
             path = self.calcPath(__file__)
 
-        self._path = str(path)
+        self._path = path
 
     def listFiles(self, dirPath: str = None):
         """
