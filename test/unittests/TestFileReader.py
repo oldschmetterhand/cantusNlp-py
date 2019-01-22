@@ -31,7 +31,7 @@ class Test_calcMyPath(unittest.TestCase):
 
     def test_fromReturn_rightFileName_detectable(self):
         act = fr.calcPath(__file__).name
-        exp = "FileReaderTest.py"
+        exp = "TestFileReader.py"
         self.assertEqual(exp, act)
 
 
