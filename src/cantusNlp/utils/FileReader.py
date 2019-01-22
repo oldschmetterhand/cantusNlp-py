@@ -5,12 +5,10 @@ import pathlib
 
 class FileReader:
 
-    _curProjectPath: str
     _path: str = ""
 
     def __init__(self, path: str):
         self._path = path
-        self._curProjectPath = self.calcPath(__file__)
 
     def listFiles(self, dirPath = None):
 
