@@ -12,6 +12,13 @@ class StringRefinery:
 
 
     def refineElemTxt(self, txt: str):
+        """
+        Removes editorial Marks, numbers, \n, \t, and excess whitespace from
+        given string. Whitespace removal is called last and matches regex for
+        neighboring whitespaces.
+        :param txt: the String to refine.
+        :return: String without unnecessary whitespace/numbers/tabs/page-breaks/parenthesis.
+        """
         txt = self.replEditorMarks(txt)
         txt = self.replNumbers(txt)
         txt = txt.replace("\n", " ")
