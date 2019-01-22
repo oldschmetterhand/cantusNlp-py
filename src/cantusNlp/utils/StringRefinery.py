@@ -1,4 +1,6 @@
 
+import re
+
 
 class StringRefinery:
 
@@ -21,6 +23,11 @@ class StringRefinery:
         txt = txt.replace("[", " ")
         txt = txt.replace("]", " ")  # quite specific for my current project(maybe not good here)
         return txt
+
+    def replNumbers(self, txt: str):
+        remNumbs: str = re.sub("\d", " ", txt)
+        return remNumbs
+
 
     def getText(self):
         return self._text
