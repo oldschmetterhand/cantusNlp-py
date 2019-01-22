@@ -36,6 +36,21 @@ class Test_getRootTag(unittest.TestCase):
         self.assertEqual(exp, act)
 
 
+class Test_getTeiBodyTag(unittest.TestCase):
+
+    def test_returnsExpectedText_textOfFirstPTaginside(self):
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        act = xreader.getTeiBodyText(testXml)
+        exp = "[Et tu Domine Deus] virtutum, Deus Israel. Intende ad visitandas omnes gentes," \
+              + " non miserearis omnibus qui operantur iniquitatem."
+        self.assertTrue(exp in act)
+
+    def test_textOfLastPinside(self):
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        act = xreader.getTeiBodyText(testXml)
+        exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
+        print(act)
+        self.assertTrue(exp in act)
 
 if __name__ == '__main__':
     unittest.main()
