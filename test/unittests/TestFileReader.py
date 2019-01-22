@@ -3,6 +3,7 @@ from src.cantusNlp.utils.FileReader import FileReader
 import pathlib
 
 curDir = pathlib.Path(__file__).parent
+curDir = str(curDir)
 fr = FileReader(curDir)
 
 
@@ -10,7 +11,8 @@ class TestPathGetter(unittest.TestCase):
 
     def test_returnValue(self):
         act = fr.getPath()
-        self.assertEqual(act, curDir)
+        print(act)
+        self.assertEqual(curDir, act)
 
 
 class TestListFiles(unittest.TestCase):
