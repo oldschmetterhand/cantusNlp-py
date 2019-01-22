@@ -1,7 +1,7 @@
 
 import os
 from typing import List
-import pathlib
+from pathlib import Path
 
 class FileReader:
 
@@ -19,7 +19,7 @@ class FileReader:
         return fileList
 
     def calcPath(self, file: object):
-        p: pathlib.Path = pathlib.Path(file)
+        p: Path = Path(file)
         return p
 
 
