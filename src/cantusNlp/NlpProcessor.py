@@ -1,12 +1,8 @@
 
-import src.prototyping.FileReader as FileReader
-import src.prototyping.XReader as Xreader
-from cltk.corpus.utils.importer import CorpusImporter
-from cltk.tokenize.word import nltk_tokenize_words
-from cltk.tokenize.word import WordTokenizer
-from collections import Counter
-from cltk.stop.latin import STOPS_LIST
-from cltk.stem.lemma import LemmaReplacer
+import src.cantusNlp.utils.FileReader as FileReader
+import src.cantusNlp.utils.XReader as Xreader
+import src.cantusNlp.utils.StringRefinery as StringRefinery
+import src.cantusNlp.utils.CltkOperator as CltkOperator
 
 
 class NlpProcessor:
@@ -14,8 +10,10 @@ class NlpProcessor:
     _dirPath: str
     _textMap: dict
 
-    _xreader: object
-    _fileReader: object
+    _xreader: Xreader
+    _fileReader: FileReader
+    _cltk: CltkOperator
+    _strRefiner: StringRefinery
 
     def __init__(self, dirPath: str):
         self._dirPath = dirPath
