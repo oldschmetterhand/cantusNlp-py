@@ -29,9 +29,21 @@ class XReader:
         return rootTag
 
     def getTeiBodyText(self, xTree: ElementTree):
+        """
+        Uses Element.itertext() on the body element of given TEI file. Then retrieves
+        the text and concatinates it to one string WITHOUT string refining. (=whitespaces
+        etc. will be included if in given file.)
+        :param xTree: The xml-file parsed as ElementTree (etree library)
+        :return: concatStr: The concatenated text WITHOUT normalization / stripping etc.
+        = As it is in the file.
+        """
         root: ElementTree.Element = xTree.getroot()
         body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
 
+        # needs to be done that way ...> if accessing mulitple
+        # elems via xpath and then looping through elem's and their
+        # texts ...> problem at elems with text AND other elems nested
+        # inside. Going around that bug via .itertext().
         concatStr = ""
         for txt in body.itertext():
             concatStr += txt
