@@ -40,16 +40,3 @@ class XReader:
 
         concatStr = self._stripElemTxt(concatStr)
         return concatStr
-
-    def _stripElemTxt(self, txt: str):                  # TODO completely move to StringRefinery
-        txt = txt.replace("\n", "")
-        txt = txt.replace("\t", "")
-        txt = txt.strip()
-        txt = txt.replace("  ", "")  # remove duplicated space
-        txt = self._delEditorMarks(txt)
-        return txt
-
-    def _delEditorMarks(self, txt: str):                # TODO completely move
-        txt = txt.replace("[", "")
-        txt = txt.replace("]", "")  # quite specific for my current project(maybe not good here)
-        return txt
