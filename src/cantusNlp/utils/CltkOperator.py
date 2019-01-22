@@ -1,6 +1,5 @@
 
 from cltk.corpus.utils.importer import CorpusImporter
-from cltk.tokenize.word import nltk_tokenize_words
 from cltk.tokenize.word import WordTokenizer
 from collections import Counter
 from cltk.stop.latin import STOPS_LIST
@@ -30,7 +29,6 @@ class CltkOperator:
         :return: List comprehension of tokenized words.
         """
         text = text.lower()
-        #print(text)
         wordTokenizer = WordTokenizer("latin")
         tokens = wordTokenizer.tokenize(text)
         tokens: list = self._removePunctuation(tokens)
