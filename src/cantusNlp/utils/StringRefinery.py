@@ -10,7 +10,7 @@ class StringRefinery:
         print("")
 
     def refineElemTxt(self, txt: str):
-        txt = self.delEditorMarks(txt)
+        txt = self.replEditorMarks(txt)
         txt = self.replNumbers(txt)
         txt = txt.replace("\n", " ")
         txt = txt.replace("\t", " ")
@@ -20,7 +20,7 @@ class StringRefinery:
         txt = re.sub(" +", " ", txt)  # remove via regex
         return txt
 
-    def delEditorMarks(self, txt: str):
+    def replEditorMarks(self, txt: str):
         txt = txt.replace("[", " ")
         txt = txt.replace("]", " ")  # quite specific for my current project(maybe not good here)
         return txt
