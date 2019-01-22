@@ -17,7 +17,7 @@ class StringRefinery:
 
         # at last whitespace operations
         txt = txt.strip()
-        txt = txt.replace("  ", "")  # remove duplicated space
+        txt = re.sub(" +", " ", txt)  # remove via regex
         return txt
 
     def delEditorMarks(self, txt: str):
@@ -26,7 +26,7 @@ class StringRefinery:
         return txt
 
     def replNumbers(self, txt: str):
-        remNumbs: str = re.sub("\d+", " ", txt)  #FIXME need to access only one number and replace it with ONE whitespace!
+        remNumbs: str = re.sub("[\d]+", " ", txt)
         return remNumbs
 
 

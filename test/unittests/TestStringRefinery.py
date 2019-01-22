@@ -38,9 +38,9 @@ class Test_refineElemText(unittest.TestCase):
 
 class Test_replaceNumbs(unittest.TestCase):
 
-    def test_replacesNumbersInGivenString_throughWhitespace(self):
+    def test_replacesNumberInGivenString_throughOneWhitespace(self):
         sample = "eel 8987 codfish"
-        exp = "eel      codfish"
+        exp = "eel   codfish"
         act = strRefiner.replNumbers(sample)
         self.assertEqual(exp, act)
 
