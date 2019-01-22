@@ -48,7 +48,6 @@ class Test_getTeiBodyTag(unittest.TestCase):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
         act = xreader.getTeiBodyText(testXml)
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
-        print(act)
         self.assertTrue(exp in act)
 
 
