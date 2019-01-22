@@ -21,7 +21,6 @@ class Test_readXMl(unittest.TestCase):
         wrongFile = "XYZ.json"
         self.assertRaises(ValueError, xreader.readXml, wrongFile)
 
-
     def test_throwsValueError_justDirGiven_asPath(self):
         wrongDir = "../unittests/"
         self.assertRaises(ValueError, xreader.readXml, wrongDir)
@@ -51,6 +50,7 @@ class Test_getTeiBodyTag(unittest.TestCase):
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
         print(act)
         self.assertTrue(exp in act)
+
 
 if __name__ == '__main__':
     unittest.main()
