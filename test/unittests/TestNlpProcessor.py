@@ -1,4 +1,5 @@
 import unittest
+import re
 from src.cantusNlp.utils.FileReader import FileReader
 from src.cantusNlp.NlpProcessor import NlpProcessor
 
@@ -17,3 +18,27 @@ class Test_loadCorpus(unittest.TestCase):
         for key in map:
             assert key in listOfFiles
 
+
+class test_lemmatizCorpus(unittest.TestCase):
+
+    def test_noDigits_inLemmatizedTexts(self):
+        nlp = NlpProcessor(xmlDir)
+        nlp.loadCorpus()
+        nlp.lemmatizeCorpus()
+        mapi = nlp.getTextMap()
+        for key in mapi:
+            lemmaList = mapi[key]
+            for lemma in lemmaList:
+                withoutNumbers = re.search("\d+", lemma)  # returns None if no match
+                self.assertEqual(None, withoutNumbers)
+
+    def test_punctuation_stillInTexts(self):
+        nlp = NlpProcessor(xmlDir)
+        nlp.loadCorpus()
+        nlp.lemmatizeCorpus()
+        mapi = nlp.getTextMap()
+        for key in mapi:
+            lemmaList = mapi[key]
+            for lemma in lemmaList:
+                withoutNumbers = re.search("[,;.:]", lemma)  # returns None if no match
+                self.assertEqual(None, withoutNumbers)
