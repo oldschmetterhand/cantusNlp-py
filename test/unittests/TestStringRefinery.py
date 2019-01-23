@@ -67,4 +67,7 @@ class Test_replEditorMarks(unittest.TestCase):
         self.assertEqual(exp, act)
 
 
+class Test_replPunctuation(unittest.TestCase):
 
+    def test_punctuationReplaced_throughWhitespace(self):
+        self.assertTrue(False)
