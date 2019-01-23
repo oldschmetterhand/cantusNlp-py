@@ -10,7 +10,6 @@ class StringRefinery:
         if txt is not None:
             self.setText(txt)
 
-
     def refineElemTxt(self, txt: str):
         """
         Removes editorial Marks, numbers, \n, \t, and excess whitespace from
