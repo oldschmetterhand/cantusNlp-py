@@ -21,7 +21,9 @@ class Test_loadCorpus(unittest.TestCase):
 
 class test_lemmatizCorpus(unittest.TestCase):
 
-    def test_noDigits_inLemmatizedTexts(self):
+    def test_noDoubleDigits_inLemmatizedTexts(self):
+        # explanation: the cltk might include numbers from 1- 9 to differentiate
+        # between lemmas
         nlp = NlpProcessor(xmlDir)
         nlp.loadCorpus()
         nlp.lemmatizeCorpus()
@@ -29,7 +31,7 @@ class test_lemmatizCorpus(unittest.TestCase):
         for key in mapi:
             lemmaList = mapi[key]
             for lemma in lemmaList:
-                withoutNumbers = re.search("\d+", lemma)  # returns None if no match
+                withoutNumbers = re.search("\d\d+", lemma)  # returns None if no match
                 self.assertEqual(None, withoutNumbers)
 
     def test_noPunctuation_inTexts(self):
