@@ -9,7 +9,7 @@ from cltk.stem.lemma import LemmaReplacer
 class CltkOperator:
 
     def __init__(self):
-        print("bla")
+        print("")
 
     def retrieveLatinModels(self):
         """
