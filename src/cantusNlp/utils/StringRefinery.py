@@ -21,14 +21,16 @@ class StringRefinery:
         :param txt: the String to refine.
         :return: String without unnecessary whitespace/numbers/tabs/page-breaks/parenthesis.
         """
+        # first replace unwanted elems through whitespace
         txt = self.replEditorMarks(txt)
         txt = self.replNumbers(txt)
+        txt = self.replPunctuation(txt)
         txt = txt.replace("\n", " ")
         txt = txt.replace("\t", " ")
 
-        # at last whitespace operations
+        # at last remove too much whitespace via regex
         txt = txt.strip()
-        txt = re.sub(" +", " ", txt)  # remove via regex
+        txt = re.sub(" +", " ", txt)
         return txt
 
     def replEditorMarks(self, txt: str):
@@ -40,6 +42,9 @@ class StringRefinery:
         remNumbs: str = re.sub("[\d]+", " ", txt)
         return remNumbs
 
+    def replPunctuation(self, text: str):
+        txt: str = re.sub("[,.:;]", " ", text)
+        return txt
 
     def getText(self):
         return self._text
@@ -50,6 +55,3 @@ class StringRefinery:
 
         self._text = txt
 
-    def replPunctuation(self, text: list):
-        noPuncts: list = [token for token in text if token not in ['.', ',', ':', ';']]
-        return noPuncts
