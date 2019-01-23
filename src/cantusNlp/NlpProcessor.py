@@ -56,6 +56,3 @@ class NlpProcessor:
     def getTextMap(self):
         return self._textMap
 
-    def _removePunctuation(self, text: list):
-        noPuncts: list = [token for token in text if token not in ['.', ',', ':', ';']]
-        return noPuncts

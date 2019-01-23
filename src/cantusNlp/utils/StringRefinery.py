@@ -16,6 +16,8 @@ class StringRefinery:
         Removes editorial Marks, numbers, \n, \t, and excess whitespace from
         given string. Whitespace removal is called last and matches regex for
         neighboring whitespaces.
+        Procedure: First replace "unwished" elems through whitespace ...> then remove multiple
+        whitespace through one.
         :param txt: the String to refine.
         :return: String without unnecessary whitespace/numbers/tabs/page-breaks/parenthesis.
         """
@@ -47,3 +49,7 @@ class StringRefinery:
             raise ValueError(str(self.__class__) + ": An empty string was given for refinement.")
 
         self._text = txt
+
+    def replPunctuation(self, text: list):
+        noPuncts: list = [token for token in text if token not in ['.', ',', ':', ';']]
+        return noPuncts
