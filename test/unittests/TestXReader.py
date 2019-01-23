@@ -11,7 +11,7 @@ projectDir = str(fr.calcPath(__file__).parent.parent.parent)
 class Test_readXMl(unittest.TestCase):
 
     def test_returnsExpectedXml_withExpectedRootTag(self):
-        path = xreader.readXml(projectDir + "/resources/sampledata/fragment_1b.xml")
+        path = xreader.readXml(projectDir + "/resources/sampledata/fragment_01b.xml")
         # namespace needs to be given
         exp = "{http://www.tei-c.org/ns/1.0}TEI"
         act = str(path.getroot().tag)
@@ -29,7 +29,7 @@ class Test_readXMl(unittest.TestCase):
 class Test_getRootTag(unittest.TestCase):
 
     def test_returnsExpectedRoot_ofGivenXml(self):
-        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         exp = "{http://www.tei-c.org/ns/1.0}TEI"
         act = str(xreader.getRootTag(testXml))
         self.assertEqual(exp, act)
@@ -38,14 +38,14 @@ class Test_getRootTag(unittest.TestCase):
 class Test_getTeiBodyTag(unittest.TestCase):
 
     def test_returnsExpectedText_textOfFirstPTaginside(self):
-        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
         exp = "[Et tu Domine Deus] virtutum, Deus Israel. Intende ad visitandas omnes gentes," \
               + " non miserearis omnibus qui operantur iniquitatem."
         self.assertTrue(exp in act)
 
     def test_textOfLastPinside(self):
-        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_1b.xml")
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
         self.assertTrue(exp in act)
