@@ -42,6 +42,11 @@ class Test_refineElemText(unittest.TestCase):
         act = strRefiner.refineElemTxt(sample)
         self.assertEqual(exp, act)
 
+    def test_cleansPollutedString_withNumbersPunctuation_whitespaceParenthesis(self):
+        sample = "  I'm my neighbour 1233 high     312       rabbit      []          \n\n \t   bambus \n           934917394123       :;:::;;,.,.,;"
+        exp= "I'm my neighbour high rabbit bambus"
+        act = strRefiner.refineElemTxt(sample)
+        self.assertEqual(exp, act)
 
 class Test_replaceNumbs(unittest.TestCase):
 
@@ -70,4 +75,13 @@ class Test_replEditorMarks(unittest.TestCase):
 class Test_replPunctuation(unittest.TestCase):
 
     def test_punctuationReplaced_throughWhitespace(self):
-        self.assertTrue(False)
+        sample = ".,banana:;"
+        exp = "  banana  "  # no whitespace removal in the method
+        act = strRefiner.replPunctuation(sample)
+        self.assertEqual(exp, act)
+
+    def test_replacePunctuation_inHeavyPollutedString(self):
+        sample="...perch:;."
+        exp = "   perch   "
+        act = strRefiner.replPunctuation(sample)
+        self.assertEqual(exp, act)
