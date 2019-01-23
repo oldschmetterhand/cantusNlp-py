@@ -32,7 +32,7 @@ class test_lemmatizCorpus(unittest.TestCase):
                 withoutNumbers = re.search("\d+", lemma)  # returns None if no match
                 self.assertEqual(None, withoutNumbers)
 
-    def test_punctuation_stillInTexts(self):
+    def test_noPunctuation_inTexts(self):
         nlp = NlpProcessor(xmlDir)
         nlp.loadCorpus()
         nlp.lemmatizeCorpus()
