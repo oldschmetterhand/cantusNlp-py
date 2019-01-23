@@ -17,8 +17,12 @@ class NlpProcessor:
 
     def __init__(self, dirPath: str):
         self._dirPath = dirPath
+
         self._xreader = Xreader.XReader()
         self._fileReader = FileReader.FileReader(self._dirPath)
+        self._cltk = CltkOperator.CltkOperator()
+        self._strRefiner = StringRefinery.StringRefinery()
+
         self._textMap = {}  # initialize here
 
     def _addToMap(self, key: str, content: str):
@@ -41,6 +45,22 @@ class NlpProcessor:
             bodyTxt = self._xreader.getTeiBodyText(xTree)
             #print(bodyTxt)
             self._textMap[fileName] = bodyTxt
+
+    def lemmatizeCorpus(self):
+
+        cltk = self._cltk
+        map: dict[str] = self.getTextMap()
+
+        for key in map:
+            text = map[key]
+            text = self._strRefiner.refineElemTxt(text)
+            text = cltk.wtokenizeLatin(text)
+            text = cltk.removeLatStopWords(text)
+            text = cltk.lemmatizeLat(text)
+            map[key] = text
+
+        return map
+
 
     def getText(self, fileName: str):
         """
