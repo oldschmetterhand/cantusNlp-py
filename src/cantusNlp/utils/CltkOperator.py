@@ -31,7 +31,6 @@ class CltkOperator:
         text = text.lower()
         wordTokenizer = WordTokenizer("latin")
         tokens = wordTokenizer.tokenize(text)
-        tokens: list = self._removePunctuation(tokens)
         return tokens
 
     def countWords(self, text: list):
