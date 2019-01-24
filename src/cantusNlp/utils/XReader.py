@@ -28,7 +28,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: ElementTree):
+    def getTeiBodyText(self, xTree: ElementTree, elemToFilter: str = None):
         """
         Uses Element.itertext() on the body element of given TEI file. Then retrieves
         the text and concatinates it to one string WITHOUT string refining. (=whitespaces
@@ -40,6 +40,9 @@ class XReader:
         root: ElementTree.Element = xTree.getroot()
         body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
 
+        if elemToFilter is not None:
+            body = self._filterElem(body)
+
         # needs to be done that way ...> if accessing mulitple
         # elems via xpath and then looping through elem's and their
         # texts ...> problem at elems with text AND other elems nested
@@ -50,5 +53,9 @@ class XReader:
 
         return concatStr
 
-    def _filterElem(self):
-        print("implement!")
+    def _filterElem(self, elemToFilter: ElementTree.Element):   # TODO implement filtering of the element
+
+        elems: list = elemToFilter.findall(".//supplied")
+
+        return elemToFilter
+
