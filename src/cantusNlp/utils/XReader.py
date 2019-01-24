@@ -28,7 +28,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: ElementTree, elemToFilter: str = None):
+    def getTeiBodyText(self, xTree: ElementTree, elemToEmpty: str = None):
         """
         Uses Element.itertext() on the body element of given TEI file. Then retrieves
         the text and concatinates it to one string WITHOUT string refining. (=whitespaces
@@ -40,8 +40,8 @@ class XReader:
         root: ElementTree.Element = xTree.getroot()
         body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
 
-        if elemToFilter is not None:
-            body = self._filterElem(body)
+        if elemToEmpty is not None:
+            body = self._emptyElem(body, elemToEmpty)
 
         # needs to be done that way ...> if accessing mulitple
         # elems via xpath and then looping through elem's and their
@@ -53,9 +53,20 @@ class XReader:
 
         return concatStr
 
-    def _filterElem(self, elemToFilter: ElementTree.Element):   # TODO implement filtering of the element
+    def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str):   # TODO implement filtering of the element
+        """
+        Sets the text value of given element in given selection to "".
+        :param elemToFilter: selection/element that should be "filtered"
+        :param tag: tag which value should be set to ""
+        :return: Element with given tag's text set to "".
+        """
 
-        elems: list = elemToFilter.findall(".//supplied")
+        tag = "{http://www.tei-c.org/ns/1.0}" + tag
+        for elem in elemToFilter.iter():
+            print("loop")
+            if elem.tag == tag:
+                print(elem.tag + " is same as " + tag)
+                elem.text = ""
 
         return elemToFilter
 
