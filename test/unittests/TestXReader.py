@@ -62,5 +62,11 @@ class Test_getTeiBodyTag(unittest.TestCase):
         isInside = "[iungitur, reus]" in str
         self.assertFalse(isInside)
 
+
+class Test_filterElem(unittest.TestCase):
+
+    def test_filteredElem_notInside(self):
+        self.assertTrue(False)
+
 if __name__ == '__main__':
     unittest.main()
