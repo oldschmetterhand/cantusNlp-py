@@ -55,12 +55,12 @@ class XReader:
 
     def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str):
         """
-        Sets the text value of given element in given selection to "".
+        Sets the text value elements with given tagname in given selection to "".
+        Does not aplly to child elements with different tagname.
         :param elemToFilter: selection/element that should be "filtered"
         :param tag: tag which value should be set to ""
         :return: Element with given tag's text set to "".
         """
-
         tag = "{http://www.tei-c.org/ns/1.0}" + tag
         for elem in elemToFilter.iter():
             if elem.tag == tag:
