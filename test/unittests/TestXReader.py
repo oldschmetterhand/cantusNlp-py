@@ -37,33 +37,33 @@ class Test_getRootTag(unittest.TestCase):
 
 class Test_getTeiBodyTag(unittest.TestCase):
 
-    def test_returnsExpectedText_textOfFirstPTaginside(self):
+    def test_returnsExpectedText_textOfFirstPTaginside_withoutFiltering(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
         exp = "[Et tu Domine Deus] virtutum, Deus Israel. Intende ad visitandas omnes gentes," \
               + " non miserearis omnibus qui operantur iniquitatem."
         self.assertTrue(exp in act)
 
-    def test_textOfLastPinside(self):
+    def test_textOfLastPinside_withoutFiltering(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
         self.assertTrue(exp in act)
 
-    def test_contentFromSuppliedElem_notInside(self):
+    def test_contentFromSuppliedElem_notInside_whenFilterParamGiven(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
-        str = xreader.getTeiBodyText(testXml)
+        str = xreader.getTeiBodyText(testXml, "supplied")
         isInside = "[Et tu Domine Deus]" in str
         self.assertFalse(isInside)
 
-    def test_anotherContentFrom_suppliedTag_notInside(self):
+    def test_anotherContentFrom_suppliedTag_notInside_whenFilterParamGiven(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_08.xml")
-        str = xreader.getTeiBodyText(testXml)
+        str = xreader.getTeiBodyText(testXml, "supplied")
         isInside = "[iungitur, reus]" in str
         self.assertFalse(isInside)
 
 
-class Test_filterElem(unittest.TestCase):
+class Test_emptyElem(unittest.TestCase):
 
     def test_filteredElem_notInside(self):
         self.assertTrue(False)
