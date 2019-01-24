@@ -53,7 +53,7 @@ class XReader:
 
         return concatStr
 
-    def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str):   # TODO implement filtering of the element
+    def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str):
         """
         Sets the text value of given element in given selection to "".
         :param elemToFilter: selection/element that should be "filtered"
@@ -63,9 +63,7 @@ class XReader:
 
         tag = "{http://www.tei-c.org/ns/1.0}" + tag
         for elem in elemToFilter.iter():
-            print("loop")
             if elem.tag == tag:
-                print(elem.tag + " is same as " + tag)
                 elem.text = ""
 
         return elemToFilter
