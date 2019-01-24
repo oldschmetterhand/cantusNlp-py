@@ -50,6 +50,17 @@ class Test_getTeiBodyTag(unittest.TestCase):
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
         self.assertTrue(exp in act)
 
+    def test_contentFromSuppliedElem_notInside(self):
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
+        str = xreader.getTeiBodyText(testXml)
+        isInside = "[Et tu Domine Deus]" in str
+        self.assertFalse(isInside)
+
+    def test_anotherContentFrom_suppliedTag_notInside(self):
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_08.xml")
+        str = xreader.getTeiBodyText(testXml)
+        isInside = "[iungitur, reus]" in str
+        self.assertFalse(isInside)
 
 if __name__ == '__main__':
     unittest.main()

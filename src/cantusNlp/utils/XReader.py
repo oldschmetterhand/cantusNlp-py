@@ -49,3 +49,6 @@ class XReader:
             concatStr += txt
 
         return concatStr
+
+    def _filterElem(self):
+        print("implement!")
