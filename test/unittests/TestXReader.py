@@ -66,7 +66,39 @@ class Test_getTeiBodyTag(unittest.TestCase):
 class Test_emptyElem(unittest.TestCase):
 
     def test_filteredElem_notInside(self):
-        self.assertTrue(False)
+
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_08.xml")
+        root: ElementTree = testXml.getroot()
+        body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
+
+        # remove <supplied> element
+        body = xreader._emptyElem(body, "supplied")
+
+        # aggregate string.
+        aggrStr = ""
+        for txt in body.itertext():
+            aggrStr += txt
+
+        testStr = "iungitur"  # should not be in aggrStr
+        isInside: bool = testStr in aggrStr
+
+        self.assertFalse(isInside)
+
+    def test_ifMethod_notCalled_valOfSuppliedTag_isStillInside(self):
+
+        testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_08.xml")
+        root: ElementTree = testXml.getroot()
+        body: ElementTree.Element = root.find(".//{http://www.tei-c.org/ns/1.0}body")
+
+        # aggregate string.
+        aggrStr = ""
+        for txt in body.itertext():
+            aggrStr += txt
+
+        testStr = "iungitur"  # should be in aggrStr (only once in sample data)
+        isInside: bool = testStr in aggrStr
+
+        self.assertTrue(isInside)
 
 if __name__ == '__main__':
     unittest.main()
