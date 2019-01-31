@@ -65,7 +65,7 @@ class Test_getTeiBodyTag(unittest.TestCase):
 
 class Test_emptyElem(unittest.TestCase):
 
-    def test_filteredElem_notInside(self):
+    def test_filteredElem_suppliedTag_succesfullyFiltered(self):
 
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_08.xml")
         root: ElementTree = testXml.getroot()
