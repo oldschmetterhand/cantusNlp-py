@@ -8,13 +8,13 @@ dataDir = str(projDirectory) + "/resources/sampledata/"
 
 # start nlp
 nlp = NlpProcessor(dataDir)
-nlp.loadCorpus()
+nlp.loadCorpus("supplied")
 nlp.lemmatizeCorpus()
 
 
+# print(nlp.getText("fragment_07.xml"))
 
-
-
+# TODO move following code inside NlpPRocessor ...> should not have to loop by hand.
 
 # testprints
 map = nlp.getTextMap()
