@@ -28,12 +28,14 @@ class NlpProcessor:
     def _addToMap(self, key: str, content: str):
         self._textMap[key] = content
 
-    def loadCorpus(self):
+    def loadCorpus(self, elemToIgnore: str = None):
         """
         Uses the intern dirPath variable given at instantiation to locate the diretory
         of the xml files. Build the access to the individual files via concatinating dirpath
         and name of the xml-files. Uses the XReader class to retrieve the TEI-body as text.
         Stores retrieved corpus in the dictionary ...> filename.xml as key-value.
+        :param elemToIgnore: Can optionally define a tag to be ignored for the read in of
+        the tei-body.
         :return: nothing
         """
         fileNameList = self._fileReader.listFiles()
@@ -42,7 +44,7 @@ class NlpProcessor:
             path = self._dirPath + fileName
             # print(path)
             xTree = self._xreader.readXml(path)
-            bodyTxt = self._xreader.getTeiBodyText(xTree)
+            bodyTxt = self._xreader.getTeiBodyText(xTree, elemToIgnore)
             #print(bodyTxt)
             self._textMap[fileName] = bodyTxt
 
