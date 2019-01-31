@@ -18,6 +18,17 @@ class Test_loadCorpus(unittest.TestCase):
         for key in map:
             assert key in listOfFiles
 
+    def test_canFilterSpecificElem_valOfSuppliedTag_notInSampleData(self):
+        # ignore textVal of given tag.
+        nlp.loadCorpus("supplied")
+        map = nlp.getTextMap()
+        txt = map.get("fragment_08.xml")
+
+        testStr: str = "iungitur"  # expected in <supplied> here (but filtered before)
+        isInside: bool = testStr in txt
+
+        self.assertFalse(isInside)
+
 
 class test_lemmatizCorpus(unittest.TestCase):
 
