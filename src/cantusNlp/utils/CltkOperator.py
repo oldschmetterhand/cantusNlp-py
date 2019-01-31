@@ -4,6 +4,8 @@ from cltk.tokenize.word import WordTokenizer
 from collections import Counter
 from cltk.stop.latin import STOPS_LIST
 from cltk.stem.lemma import LemmaReplacer
+from cltk.corpus.latin import corpora
+from cltk.corpus.readers import get_corpus_reader
 
 
 class CltkOperator:
@@ -45,3 +47,8 @@ class CltkOperator:
         lemmatizer = LemmaReplacer('latin')
         lemmata: list = lemmatizer.lemmatize(tokenized_words)
         return lemmata
+
+    def displaySuspiciousWords(self):
+        latin_corpus = get_corpus_reader('latin_text_latin_library', 'latin')
+        print(len(list(latin_corpus.docs())))
+        print(len(list(latin_corpus.words())))
