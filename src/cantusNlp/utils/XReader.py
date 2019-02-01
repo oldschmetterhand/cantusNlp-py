@@ -49,7 +49,7 @@ class XReader:
         # inside. Going around that bug via .itertext().
         concatStr = ""
         for txt in body.itertext():
-            concatStr += txt
+            concatStr += (txt + " ")
 
         return concatStr
 
