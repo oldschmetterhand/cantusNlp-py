@@ -48,7 +48,7 @@ class CltkOperator:
         lemmata: list = lemmatizer.lemmatize(tokenized_words)
         return lemmata
 
-    def displaySuspiciousWords(self):
+    def displaySuspiciousWords(self):   # TODO functionality!
         latin_corpus = get_corpus_reader('latin_text_latin_library', 'latin')
         print(len(list(latin_corpus.docs())))
         print(len(list(latin_corpus.words())))
