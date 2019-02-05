@@ -13,4 +13,8 @@ class TestDisplaySuspiciousWords(unittest.TestCase):
 
     def tests_blaa(self):
         cltk = CltkOperator()
-        cltk.displaySuspiciousWords()
+        # cltk.displaySuspiciousWords()
+
+
+if __name__ == '__main__':
+    unittest.main()
