@@ -37,5 +37,16 @@ class Test_calcMyPath(unittest.TestCase):
         self.assertEqual(exp, act)
 
 
+class Test_readTxt(unittest.TestCase):
+
+    def test_expectedStringIn_readInTxt(self):
+        reader = FileReader()
+        filePath = pathlib.Path(__file__).parent.parent.parent
+        filePath = str(filePath) + "/resources/txtData/txt.txt"
+        txt = reader.readTxt(filePath)
+        expInside = "iuxta quod et sanctus Gregorius in sacramentario et in graduali libro aliquotiens"
+        isInside = expInside in txt
+        self.assertTrue(isInside)
+
 if __name__ == '__main__':
     unittest.main()
