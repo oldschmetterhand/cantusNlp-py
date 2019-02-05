@@ -46,6 +46,7 @@ class Test_getTeiBodyTag(unittest.TestCase):
     def test_textOfLastPinside_withoutFiltering(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
+        act = act.replace("  ", " ")  # now have to replace double spaces.
         exp = "in consumatione, in ira consumationis et non erunt. Et scient quia Deus dominabitur [Iacob]"
         self.assertTrue(exp in act)
 
