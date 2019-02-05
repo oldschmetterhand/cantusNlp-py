@@ -40,5 +40,16 @@ class FileReader:
         return p
 
 
+    def readTxt(self, path: str):
+        """
+        Reads in specified text file and returns whole content as is as string.
+        :return: Whole text content as string.
+        """
+        txt = open(path, "r")
+        txt_str = txt.read()
+        txt.close()
+        return txt_str
+
+
     def getPath(self):
         return self._path
