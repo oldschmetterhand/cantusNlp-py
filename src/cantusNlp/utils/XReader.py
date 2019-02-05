@@ -32,7 +32,9 @@ class XReader:
         """
         Uses Element.itertext() on the body element of given TEI file. Then retrieves
         the text and concatinates it to one string WITHOUT string refining. (=whitespaces
-        etc. will be included if in given file.)
+        etc. will be included if in given file.) Method is quite unreliable --- each tag's text
+        content will be seperated by a single whitespace ...> will split the word e.g. at
+        Elep<char>h</char>hant.
         :param xTree: The xml-file parsed as ElementTree (etree library)
         :return: concatStr: The concatenated text WITHOUT normalization / stripping etc.
         = As it is in the file.
