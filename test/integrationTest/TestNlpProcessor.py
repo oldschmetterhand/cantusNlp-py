@@ -30,7 +30,7 @@ class Test_loadCorpus(unittest.TestCase):
         self.assertFalse(isInside)
 
 
-    def test_alsoSupports_txtFiles(self):
+    def test_alsoSupports_txtFiles_txtTxt_inside(self):
 
         txt_data_dir = str(projectDir) + "/resources/txtData/"
         processor = NlpProcessor(txt_data_dir)
@@ -38,6 +38,15 @@ class Test_loadCorpus(unittest.TestCase):
         txt = processor.getText("txt.txt")
         is_inside = "In primo nocturno In omnem terram" in txt
         self.assertTrue(is_inside)
+
+    def test_threeFiles_inMap(self):
+        txt_data_dir = str(projectDir) + "/resources/txtData/"
+        processor = NlpProcessor(txt_data_dir)
+        processor.loadCorpus()
+        map = processor.getTextMap()
+        expLength = 3
+        actLength = len(map)
+        self.assertEqual(expLength,actLength)
 
 
 
