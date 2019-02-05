@@ -21,7 +21,7 @@ class TestListFiles(unittest.TestCase):
         fileList = fr.listFiles()
         expFileName = pathlib.Path(__file__).name
         # expecting only one file
-        actFileName = fileList[0]
+        actFileName = fileList[1]
         self.assertEqual(expFileName, actFileName)
 
     def test_overwriteDefaultValue_withNonsense(self):
