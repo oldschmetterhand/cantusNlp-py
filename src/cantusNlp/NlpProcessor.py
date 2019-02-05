@@ -42,10 +42,16 @@ class NlpProcessor:
         for fileName in fileNameList:
             # trying getting all the body texts.
             path = self._dirPath + fileName
-            # print(path)
-            xTree = self._xreader.readXml(path)
-            bodyTxt = self._xreader.getTeiBodyText(xTree, elemToIgnore)
-            #print(bodyTxt)
+
+            # .txt or .xml
+            if fileName.endswith(".xml"):
+                xTree = self._xreader.readXml(path)
+                bodyTxt = self._xreader.getTeiBodyText(xTree, elemToIgnore)
+            elif fileName.endswith(".txt"):
+                bodyTxt = self._fileReader.readTxt(path)
+            else:
+                raise TypeError("LoadCorpus only supports .txt and .xml files. Given file was: " + path)
+
             self._textMap[fileName] = bodyTxt
 
     def lemmatizeCorpus(self):
