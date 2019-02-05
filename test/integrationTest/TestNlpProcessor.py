@@ -30,6 +30,17 @@ class Test_loadCorpus(unittest.TestCase):
         self.assertFalse(isInside)
 
 
+    def test_alsoSupports_txtFiles(self):
+
+        txt_data_dir = str(projectDir) + "/resources/txtData/"
+        processor = NlpProcessor(txt_data_dir)
+        processor.loadCorpus()
+        txt = processor.getText("txt.txt")
+        is_inside = "In primo nocturno In omnem terram" in txt
+        self.assertTrue(is_inside)
+
+
+
 class test_lemmatizCorpus(unittest.TestCase):
 
     def test_noDoubleDigits_inLemmatizedTexts(self):
