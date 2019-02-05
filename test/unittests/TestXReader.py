@@ -40,8 +40,7 @@ class Test_getTeiBodyTag(unittest.TestCase):
     def test_returnsExpectedText_textOfFirstPTaginside_withoutFiltering(self):
         testXml = ElementTree.parse(projectDir + "/resources/sampledata/fragment_01b.xml")
         act = xreader.getTeiBodyText(testXml)
-        exp = "[Et tu Domine Deus] virtutum, Deus Israel. Intende ad visitandas omnes gentes," \
-              + " non miserearis omnibus qui operantur iniquitatem."
+        exp = "[Et tu Domine Deus]"
         self.assertTrue(exp in act)
 
     def test_textOfLastPinside_withoutFiltering(self):
