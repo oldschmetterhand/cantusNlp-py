@@ -84,3 +84,15 @@ class NlpProcessor:
     def getTextMap(self):
         return self._textMap
 
+    def aggregateWordlist(self, wordList: list):
+        """
+        Takes a list of words and returns a giant string, with all individual words separated through
+        a single whitespace.
+        :param wordList:
+        :return: one big string of words separated by whitespace.
+        """
+        aggr: str = ""
+        for word in wordList:
+            aggr += word + " "
+
+        return aggr
