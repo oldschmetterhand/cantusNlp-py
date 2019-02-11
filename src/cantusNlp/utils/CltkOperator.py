@@ -6,6 +6,7 @@ from cltk.stop.latin import STOPS_LIST
 from cltk.stem.lemma import LemmaReplacer
 from cltk.corpus.latin import corpora
 from cltk.corpus.readers import get_corpus_reader
+from src.cantusNlp.utils.Lemma import LEMMATA
 
 
 class CltkOperator:
@@ -48,7 +49,20 @@ class CltkOperator:
         lemmata: list = lemmatizer.lemmatize(tokenized_words)
         return lemmata
 
-    def displaySuspiciousWords(self):   # TODO functionality!
-        latin_corpus = get_corpus_reader('latin_text_latin_library', 'latin')
-        print(len(list(latin_corpus.docs())))
-        print(len(list(latin_corpus.words())))
+    def displayCltkLemmaDeviation(self, wordList: list):
+        """
+        Takes in a wordList and compares each word wo be inside the lemmatalist of the cltk.
+        Prints words not found to the console.
+        :param wordList:
+        :return: nothing.
+        """
+        lemma_array = []
+        for key in LEMMATA:
+            key = str.lower(key)
+            lemma_array.append(key)
+
+        for word in wordList:
+            if word not in lemma_array:
+                print(word)
+
+
