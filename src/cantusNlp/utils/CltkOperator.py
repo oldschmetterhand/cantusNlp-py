@@ -61,8 +61,13 @@ class CltkOperator:
             key = str.lower(key)
             lemma_array.append(key)
 
+        notFound_counter = 0
         for word in wordList:
             if word not in lemma_array:
                 print(word)
+                notFound_counter += 1
 
+        lemma_size = len(lemma_array)
 
+        percent = (notFound_counter / lemma_size) * notFound_counter
+        print(percent)
