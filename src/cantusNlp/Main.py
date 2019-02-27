@@ -16,17 +16,26 @@ nlp.loadCorpus("note")
 map = nlp.getTextMap()
 cltk = CltkOperator()
 
+lemmas = []
+lemmas_with_source = []
 
 for key in map:
     text = map[key]
     text = nlp._strRefiner.refineElemTxt(text)
     text, removed = cltk.wtokenizeLatin(text, True)
-    # text = cltk.lemmatizeLat(text)
+    text, lemmas_with_source = cltk.lemmatizeLat(text, True)
     # text = cltk.removeLatStopWords(text)
     map[key] = text
 
-print(removed)
-#cltk.displayCltkLemmaDeviation(map["txt.txt"])
+# print(removed)
+# not_matched, percentage_not_matched = cltk.analyzeCltkLemmaDeviation(map["txt.txt"]) # called on plain tokenized words
 
-aggregStr = nlp.aggregateWordlist(map["txt.txt"])
-print(aggregStr)
+# print(str(percentage_not_matched) + "%")
+# print(not_matched)
+# print(map["txt.txt"])
+
+# aggregStr = nlp.aggregateWordlist(map["txt.txt"])
+# print(aggregStr)
+
+print(map["txt.txt"])
+print(lemmas_with_source)
