@@ -24,7 +24,7 @@ class CltkOperator:
         latinDownloader.import_corpus('latin_text_latin_library')
         latinDownloader.import_corpus('latin_models_cltk')
 
-    def wtokenizeLatin(self, text: str, removeSplitSyllable: bool = False):
+    def wtokenizeLatin(self, text: str, removeSplitSyllable: bool = False) -> ([str]) or ([str], [str]):
         """
         Uses the latin word tokenizer from cltk to tokenize the words for given text.
         Removes punctuation internally.
