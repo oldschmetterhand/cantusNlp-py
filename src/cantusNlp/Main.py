@@ -20,7 +20,7 @@ cltk = CltkOperator()
 for key in map:
     text = map[key]
     text = nlp._strRefiner.refineElemTxt(text)
-    text = cltk.wtokenizeLatin(text)
+    text = cltk.wtokenizeLatin(text, True)
     # text = cltk.lemmatizeLat(text)
     # text = cltk.removeLatStopWords(text)
     map[key] = text
