@@ -24,16 +24,25 @@ class CltkOperator:
         latinDownloader.import_corpus('latin_text_latin_library')
         latinDownloader.import_corpus('latin_models_cltk')
 
-    def wtokenizeLatin(self, text: str):
+    def wtokenizeLatin(self, text: str, removeSplitSyllable: bool = False):
         """
         Uses the latin word tokenizer from cltk to tokenize the words for given text.
         Removes punctuation internally.
         :param text: Text to tokenize.
+        :param removeSplitSyllable: true ..> when "big" words are split by the cltk tokenizer
+        it adds split syllabi (like "-que") to the return array. If this param is set to true these
+        split syllabi are being removed otherwise not.
         :return: List comprehension of tokenized words.
         """
         text = text.lower()
         wordTokenizer = WordTokenizer("latin")
-        tokens = wordTokenizer.tokenize(text)
+        tokens: [] = wordTokenizer.tokenize(text)
+
+        if removeSplitSyllable:
+            for word in tokens:
+                if "-" in word:
+                    tokens.remove(word)
+
         return tokens
 
     def countWords(self, text: list):
