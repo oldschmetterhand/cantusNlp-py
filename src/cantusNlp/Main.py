@@ -18,13 +18,13 @@ cltk = CltkOperator()
 
 lemmas = []
 lemmas_with_source = []
-
+text = []
 for key in map:
     text = map[key]
     text = nlp._strRefiner.refineElemTxt(text)
     text, removed = cltk.wtokenizeLatin(text, True)
     text, lemmas_with_source = cltk.lemmatizeLat(text, True)
-    # text = cltk.removeLatStopWords(text)
+    text = cltk.removeLatStopWords(text)
     map[key] = text
 
 # print(removed)
@@ -37,5 +37,18 @@ for key in map:
 # aggregStr = nlp.aggregateWordlist(map["txt.txt"])
 # print(aggregStr)
 
-print(map["txt.txt"])
-print(lemmas_with_source)
+# print(map["txt.txt"])
+# print(lemmas_with_source)
+
+size = []
+for lemma in lemmas_with_source:
+    if ("1" or "2" or "3") in lemma:
+        size.append(lemma)
+        # print(lemma)
+
+print(len(size))
+
+size = set(size)
+
+print(len(size))
+print(size)
