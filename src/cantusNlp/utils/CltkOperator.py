@@ -32,18 +32,27 @@ class CltkOperator:
         :param removeSplitSyllable: true ..> when "big" words are split by the cltk tokenizer
         it adds split syllabi (like "-que") to the return array. If this param is set to true these
         split syllabi are being removed otherwise not.
-        :return: List comprehension of tokenized words.
+        :return: Tuple with List Comprehension of tokenized words on first index position. When
+        paramater removeSplitSyllable was assigned true ...> returns on second index position the
+        removed words (also as list comprehension).
         """
         text = text.lower()
         wordTokenizer = WordTokenizer("latin")
         tokens: [] = wordTokenizer.tokenize(text)
 
+        return_tuple: tuple = ()
+        removed_words: [] = []
         if removeSplitSyllable:
             for word in tokens:
                 if "-" in word:
+                    removed_words.append(word)
                     tokens.remove(word)
 
-        return tokens
+            return_tuple = (tokens, removed_words)
+            return return_tuple
+
+        return_tuple = (tokens)
+        return return_tuple
 
     def countWords(self, text: list):
         wordsDict: dict = Counter(text)

@@ -20,12 +20,13 @@ cltk = CltkOperator()
 for key in map:
     text = map[key]
     text = nlp._strRefiner.refineElemTxt(text)
-    text = cltk.wtokenizeLatin(text, True)
+    text, removed = cltk.wtokenizeLatin(text, True)
     # text = cltk.lemmatizeLat(text)
     # text = cltk.removeLatStopWords(text)
     map[key] = text
 
-cltk.displayCltkLemmaDeviation(map["txt.txt"])
+print(removed)
+#cltk.displayCltkLemmaDeviation(map["txt.txt"])
 
 aggregStr = nlp.aggregateWordlist(map["txt.txt"])
 print(aggregStr)
