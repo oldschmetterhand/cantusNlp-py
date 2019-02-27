@@ -62,30 +62,36 @@ class CltkOperator:
         removedStops: list[str] = [w for w in tokenized_text if not w in STOPS_LIST]
         return removedStops
 
-    def lemmatizeLat(self, tokenized_words: list):
+    def lemmatizeLat(self, tokenized_words: list) -> [str]:
         lemmatizer = LemmaReplacer('latin')
         lemmata: list = lemmatizer.lemmatize(tokenized_words)
         return lemmata
 
-    def displayCltkLemmaDeviation(self, wordList: list):
+    def analyzeCltkLemmaDeviation(self, wordList: list) -> ([str], float):
         """
-        Takes in a wordList and compares each word wo be inside the lemmatalist of the cltk.
-        Prints words not found to the console.
+        Takes in a wordList and compares each word wo be inside the lemmatalist of the cltk (retrieved from perseus corpus).
+        Returns words not matched as list comprahension
         :param wordList:
-        :return: nothing.
+        :return: Tuple: on first index position a list comprehension of all words that were not
+        matched from the lemma-list (perseus corpus), on second index position: percentage of words
+        that could not be found as FLOAT.
         """
         lemma_array = []
         for key in LEMMATA:
             key = str.lower(key)
             lemma_array.append(key)
 
-        notFound_counter = 0
+        words_not_inside_lemma: [str] = []
+        words_found_counter: int = 0
+        words_not_found_counter: int = 0
         for word in wordList:
             if word not in lemma_array:
-                print(word)
-                notFound_counter += 1
+                words_not_inside_lemma.append(word)
+                words_not_found_counter += 1
+            else:
+                words_found_counter += 1
 
-        lemma_size = len(lemma_array)
+        words_total = words_found_counter + words_not_found_counter
+        percentage_no_match: float = (100/words_total)*words_not_found_counter
 
-        percent = (notFound_counter / lemma_size) * notFound_counter
-        print(percent)
+        return words_not_inside_lemma, percentage_no_match
