@@ -70,7 +70,7 @@ class CltkOperator:
         :param tokenized_words: String list of words to be lemmatized.
         :param return_raw: Boolean, decides if return should contain raw "source word" or not.
         :return: List of lemmatized words, if return_raw was set to true additionally adds the "source-word"
-        after the lemma string inside the list of lemmas.
+        BEFORE the lemma string inside the list of lemmas.
         """
         lemmatizer = LemmaReplacer('latin')
         lemmata: list = lemmatizer.lemmatize(tokenized_words, return_raw)
