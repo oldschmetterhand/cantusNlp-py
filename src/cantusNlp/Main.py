@@ -23,8 +23,8 @@ for key in map:
     text = map[key]
     text = nlp._strRefiner.refineElemTxt(text)
     text, removed = cltk.wtokenizeLatin(text, True)
-    text, lemmas_with_source = cltk.lemmatizeLat(text, True)
     text = cltk.removeLatStopWords(text)
+    text, lemmas_with_source = cltk.lemmatizeLat(text, True)
     map[key] = text
 
 # print(removed)
