@@ -63,8 +63,8 @@ class NlpProcessor:
             text = map[key]
             text = self._strRefiner.refineElemTxt(text)
             text = cltk.wtokenizeLatin(text)
-            text = cltk.lemmatizeLat(text)
             text = cltk.removeLatStopWords(text)
+            text = cltk.lemmatizeLat(text)
             map[key] = text
 
         return map
