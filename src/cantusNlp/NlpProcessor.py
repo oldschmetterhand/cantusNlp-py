@@ -3,7 +3,7 @@ import src.cantusNlp.utils.FileReader as FileReader
 import src.cantusNlp.utils.XReader as Xreader
 import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
-
+import os
 
 class NlpProcessor:
 
@@ -69,6 +69,60 @@ class NlpProcessor:
 
         return map
 
+
+    def doTheMagic(self):
+        """
+
+        :return:
+        """
+
+        # TODO finish method + split into reusable AND testable methods
+
+        cltk = self._cltk
+        map: dict[str] = self.getTextMap()
+
+        for key in map:
+            text = map[key]
+            text = self._strRefiner.refineElemTxt(text)
+            text, deleted_tokens = cltk.wtokenizeLatin(text, True)
+            text = cltk.removeLatStopWords(text)
+            lemmas_plain, lemmas_with_source = cltk.lemmatizeLat(text, True)
+
+            base_path = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/analyzis"
+            dir_name = key.replace(".", "_")
+            os.makedirs(base_path + "/" + dir_name)
+            f = open(base_path + "/" + dir_name + "/deleted_tokens.txt", "w")
+            f.write(str(deleted_tokens))
+            f.close()
+
+            f = open(base_path + "./" + dir_name + "/lemmas_with_source.txt", "w")
+            f.write(str(lemmas_with_source))
+            f.close()
+
+            f = open(base_path + "./" + dir_name + "/lemmas_plain.txt", "w")
+            f.write(str(lemmas_plain))
+            f.close()
+
+            # voyant writing
+            f = open(base_path + "./" + dir_name + "/voyant_ready.txt", "w")
+            aggr_str = ""
+            for word in lemmas_with_source:
+                aggr_str += (word + " ")
+
+            f.write(aggr_str)
+            f.close()
+
+
+            # from here method to analyze analytical deviation from cltk perseus corpus.
+            # (two parameters --> percentage of words not found of total AND all words that were not found)
+            words_not_found, no_match_percentage = cltk.analyzeCltkLemmaDeviation(text)
+            f = open(base_path + "./" + dir_name + "/words_not_known.txt", "w")
+            f.write(str(words_not_found))
+            f.close()
+
+            f = open(base_path + "./" + dir_name + "/percentage_not_known.txt", "w")
+            f.write(str(no_match_percentage))
+            f.close()
 
     def getText(self, fileName: str):
         """
