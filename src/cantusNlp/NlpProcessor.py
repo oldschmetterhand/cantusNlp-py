@@ -106,7 +106,7 @@ class NlpProcessor:
             # voyant writing
             f = open(base_path + "./" + dir_name + "/voyant_ready.txt", "w")
             aggr_str = ""
-            for word in lemmas_with_source:
+            for word in lemmas_plain:
                 aggr_str += (word + " ")
 
             f.write(aggr_str)
