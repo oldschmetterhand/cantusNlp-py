@@ -160,11 +160,19 @@ class NlpProcessor:
         analDict['wordsNotKnownToLemmatizer'] = str(words_not_found)
         analDict['percentageOfWordsNotKnownToLemmatizer'] = str(no_match_percentage)
 
-        f = open(self._resultDir + "./" + folder_to_create + "/analysisJson.json", "w")
-        json.dump(analDict, f)
-        f.close()
-
+        self.write_dict_to_json(analDict, self._resultDir + "./" + folder_to_create + "/analysisJson.json")
         return analDict
 
+    def write_dict_to_json(self, dict_to_write: dict, path_with_name:str):
+        """
+        Writes given dictionary to specified path (+ filename) as json object. (no json array)
+        :param dict_to_write: Dictionary to write to json file
+        :param path_with_name:  Path where to write the json with filename
+        e.g. 'folderXY/names/surnames/startingWithS.json'
+        :return:
+        """
+        f = open(path_with_name, "w")
+        json.dump(dict_to_write, f)
+        f.close()
 
 
