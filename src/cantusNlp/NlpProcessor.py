@@ -118,7 +118,7 @@ class NlpProcessor:
             # from here method to analyze analytical deviation from cltk perseus corpus.
             self._createAnalysisJSON(dir_name, text)
 
-    def getText(self, fileName: str):
+    def getText(self, fileName: str) -> str:
         """
         Accesses the intern dictionary in which the read in corpora are saved under their
         filename as key-value. Value calls dictionary[key] ...> to access the data.
@@ -129,10 +129,10 @@ class NlpProcessor:
         corpus: str = self._textMap[fileName]
         return corpus
 
-    def getTextMap(self):
+    def getTextMap(self) -> dict:
         return self._textMap
 
-    def aggregateWordlist(self, wordList: list):
+    def aggregateWordlist(self, wordList: list) -> str:
         """
         Takes a list of words and returns a giant string, with all individual words separated through
         a single whitespace.
