@@ -108,7 +108,6 @@ class NlpProcessor:
             self.outputToTxt(lemmas_plain, base_path + "./" + dir_name + "/lemmas_plain.txt")
 
             # voyant writing
-            f = open(base_path + "./" + dir_name + "/voyant_ready.txt", "w")
             aggr_str = ""
             for word in lemmas_plain:
                 aggr_str += (word + " ")
