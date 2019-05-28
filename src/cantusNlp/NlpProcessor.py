@@ -44,7 +44,7 @@ class NlpProcessor:
         fileNameList = self._fileReader.listFiles()
         for fileName in fileNameList:
             # trying getting all the body texts.
-            path = self._dataPath + fileName
+            path = self._dataPath + "/" + fileName
 
             # .txt or .xml
             if fileName.endswith(".xml"):
