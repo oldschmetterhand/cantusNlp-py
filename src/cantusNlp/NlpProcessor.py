@@ -94,17 +94,10 @@ class NlpProcessor:
             base_path = self._resultDir
             dir_name = key.replace(".", "_")
             os.makedirs(base_path + "/" + dir_name)
-            f = open(base_path + "/" + dir_name + "/deleted_tokens.txt", "w")
-            f.write(str(deleted_tokens))
-            f.close()
 
-            f = open(base_path + "./" + dir_name + "/lemmas_with_source.txt", "w")
-            f.write(str(lemmas_with_source))
-            f.close()
-
-            f = open(base_path + "./" + dir_name + "/lemmas_plain.txt", "w")
-            f.write(str(lemmas_plain))
-            f.close()
+            self.outputToTxt(deleted_tokens, base_path + "/" + dir_name + "/deleted_tokens.txt")
+            self.outputToTxt(lemmas_with_source, base_path + "./" + dir_name + "/lemmas_with_source.txt")
+            self.outputToTxt(lemmas_plain, base_path + "./" + dir_name + "/lemmas_plain.txt")
 
             # voyant writing
             f = open(base_path + "./" + dir_name + "/voyant_ready.txt", "w")
@@ -112,8 +105,7 @@ class NlpProcessor:
             for word in lemmas_plain:
                 aggr_str += (word + " ")
 
-            f.write(aggr_str)
-            f.close()
+            self.outputToTxt(aggr_str, base_path + "./" + dir_name + "/voyant_ready.txt")
 
             # from here method to analyze analytical deviation from cltk perseus corpus.
             self._createAnalysisJSON(dir_name, text)
@@ -173,6 +165,17 @@ class NlpProcessor:
         """
         f = open(path_with_name, "w")
         json.dump(dict_to_write, f)
+        f.close()
+
+    def outputToTxt(self, text: str, path_with_name:str):
+        """
+        Writes given file to given path (+filename).
+        :param text: String to ouput to text file
+        :param path_with_name: Path where to write the .txt with filename
+        :return:
+        """
+        f = open(path_with_name, "w")
+        f.write(str(text))
         f.close()
 
 
