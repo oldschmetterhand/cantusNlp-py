@@ -4,6 +4,7 @@ import src.cantusNlp.utils.XReader as Xreader
 import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
 import os
+import json
 
 class NlpProcessor:
 
@@ -112,17 +113,8 @@ class NlpProcessor:
             f.write(aggr_str)
             f.close()
 
-
             # from here method to analyze analytical deviation from cltk perseus corpus.
-            # (two parameters --> percentage of words not found of total AND all words that were not found)
-            words_not_found, no_match_percentage = cltk.analyzeCltkLemmaDeviation(text)
-            f = open(base_path + "./" + dir_name + "/words_not_known.txt", "w")
-            f.write(str(words_not_found))
-            f.close()
-
-            f = open(base_path + "./" + dir_name + "/percentage_not_known.txt", "w")
-            f.write(str(no_match_percentage))
-            f.close()
+            self._createAnalysisJSON(base_path, dir_name, text)
 
     def getText(self, fileName: str):
         """
@@ -150,3 +142,28 @@ class NlpProcessor:
             aggr += word + " "
 
         return aggr
+
+    def _createAnalysisJSON(self, folder_path: str, folder_to_create: str, refined_word_list: list) -> dict:
+        """
+        Calls the analyzeCltkLemmaDeviation method from the CltkOperator.py and writes result to
+        a json file with values for words not known to the cltk lemmatizer.
+        :param folder_path: Folderpath where to create the json.
+        :param refined_word_list: Tokenized wordlist with removed latin stopwords.
+        :param folder_to_create:
+        :return: Dictionary created (that is written to JSON)
+        """
+
+        analDict: dict = {}
+
+        words_not_found, no_match_percentage = self._cltk.analyzeCltkLemmaDeviation(refined_word_list)
+        analDict['wordsNotKnownToLemmatizer'] = str(words_not_found)
+        analDict['percentageOfWordsNotKnownToLemmatizer'] = str(no_match_percentage)
+
+        f = open(folder_path + "./" + folder_to_create + "/analysisJson.json", "w")
+        json.dump(analDict, f)
+        f.close()
+
+        return analDict
+
+
+
