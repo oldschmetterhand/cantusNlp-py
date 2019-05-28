@@ -150,7 +150,7 @@ class NlpProcessor:
         Calls the analyzeCltkLemmaDeviation method from the CltkOperator.py and writes result to
         a json file with values for words not known to the cltk lemmatizer.
         :param refined_word_list: Tokenized wordlist with removed latin stopwords.
-        :param folder_to_create:
+        :param folder_to_create: Folder where the json should be placed (created if necessary)
         :return: Dictionary created (that is written to JSON)
         """
 
