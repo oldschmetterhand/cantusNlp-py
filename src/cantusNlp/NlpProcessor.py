@@ -9,7 +9,7 @@ import json
 
 class NlpProcessor:
 
-    _dirPath: str
+    _dataPath: str
     _textMap: dict
 
     _xreader: Xreader
@@ -17,12 +17,12 @@ class NlpProcessor:
     _cltk: CltkOperator
     _strRefiner: StringRefinery
 
-    def __init__(self, dirPath: str, resultDir: str):
-        self._dirPath = dirPath
+    def __init__(self, dataPath: str, resultDir: str):
+        self._dataPath = dataPath
         self._resultDir = resultDir
 
         self._xreader = Xreader.XReader()
-        self._fileReader = FileReader.FileReader(self._dirPath)
+        self._fileReader = FileReader.FileReader(self._dataPath)
         self._cltk = CltkOperator.CltkOperator()
         self._strRefiner = StringRefinery.StringRefinery()
 
@@ -44,7 +44,7 @@ class NlpProcessor:
         fileNameList = self._fileReader.listFiles()
         for fileName in fileNameList:
             # trying getting all the body texts.
-            path = self._dirPath + fileName
+            path = self._dataPath + fileName
 
             # .txt or .xml
             if fileName.endswith(".xml"):
