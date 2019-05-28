@@ -4,12 +4,14 @@ from src.cantusNlp.utils.FileReader import FileReader
 from src.cantusNlp.utils.Lemma import LEMMATA
 from src.cantusNlp.utils.CltkOperator import CltkOperator
 
+# first setting up data and result path for the analysis
 fr = FileReader()
 projDirectory = fr.calcPath(__file__).parent.parent.parent
 dataDir = str(projDirectory) + "/resources/txtData/"
+resultDir = str(projDirectory) + "/resources/analyzis"
 
-# start nlp
-nlp = NlpProcessor(dataDir)
+# then start nlp process
+nlp = NlpProcessor(dataDir, resultDir)
 nlp.loadCorpus("note")
 nlp.doTheMagic()
 # nlp.lemmatizeCorpus()

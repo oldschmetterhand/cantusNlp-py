@@ -6,6 +6,7 @@ import src.cantusNlp.utils.CltkOperator as CltkOperator
 import os
 import json
 
+
 class NlpProcessor:
 
     _dirPath: str
@@ -16,8 +17,9 @@ class NlpProcessor:
     _cltk: CltkOperator
     _strRefiner: StringRefinery
 
-    def __init__(self, dirPath: str):
+    def __init__(self, dirPath: str, resultDir: str):
         self._dirPath = dirPath
+        self._resultDir = resultDir
 
         self._xreader = Xreader.XReader()
         self._fileReader = FileReader.FileReader(self._dirPath)
@@ -89,7 +91,7 @@ class NlpProcessor:
             text = cltk.removeLatStopWords(text)
             lemmas_plain, lemmas_with_source = cltk.lemmatizeLat(text, True)
 
-            base_path = "C:/Users/stoffse/PycharmProjects/CantusNlp/resources/analyzis"
+            base_path = self._resultDir
             dir_name = key.replace(".", "_")
             os.makedirs(base_path + "/" + dir_name)
             f = open(base_path + "/" + dir_name + "/deleted_tokens.txt", "w")
@@ -114,7 +116,7 @@ class NlpProcessor:
             f.close()
 
             # from here method to analyze analytical deviation from cltk perseus corpus.
-            self._createAnalysisJSON(base_path, dir_name, text)
+            self._createAnalysisJSON(dir_name, text)
 
     def getText(self, fileName: str):
         """
@@ -143,11 +145,10 @@ class NlpProcessor:
 
         return aggr
 
-    def _createAnalysisJSON(self, folder_path: str, folder_to_create: str, refined_word_list: list) -> dict:
+    def _createAnalysisJSON(self, folder_to_create: str, refined_word_list: list) -> dict:
         """
         Calls the analyzeCltkLemmaDeviation method from the CltkOperator.py and writes result to
         a json file with values for words not known to the cltk lemmatizer.
-        :param folder_path: Folderpath where to create the json.
         :param refined_word_list: Tokenized wordlist with removed latin stopwords.
         :param folder_to_create:
         :return: Dictionary created (that is written to JSON)
@@ -159,7 +160,7 @@ class NlpProcessor:
         analDict['wordsNotKnownToLemmatizer'] = str(words_not_found)
         analDict['percentageOfWordsNotKnownToLemmatizer'] = str(no_match_percentage)
 
-        f = open(folder_path + "./" + folder_to_create + "/analysisJson.json", "w")
+        f = open(self._resultDir + "./" + folder_to_create + "/analysisJson.json", "w")
         json.dump(analDict, f)
         f.close()
 
