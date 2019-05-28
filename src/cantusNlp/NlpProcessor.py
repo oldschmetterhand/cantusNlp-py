@@ -66,7 +66,7 @@ class NlpProcessor:
         """
 
         if output_statistics:
-            self.doTheMagic()
+            self._lemmatizeWithAnalysis()
         else:
             cltk = self._cltk
             map: dict[str] = self.getTextMap()
@@ -81,7 +81,7 @@ class NlpProcessor:
 
         return self.getTextMap()
 
-    def doTheMagic(self):
+    def _lemmatizeWithAnalysis(self):
         """
 
         :return:
