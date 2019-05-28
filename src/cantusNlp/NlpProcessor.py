@@ -57,21 +57,29 @@ class NlpProcessor:
 
             self._textMap[fileName] = bodyTxt
 
-    def lemmatizeCorpus(self):
+    def lemmatizeCorpus(self, output_statistics: bool = False) -> dict:
+        """
 
-        cltk = self._cltk
-        map: dict[str] = self.getTextMap()
+        :param output_statistics: Boolean decides if analysis files should be generated or not.
+        If true creates folders for each read in file in given result folder at instantiation.
+        :return: The lemmatized internal map.
+        """
 
-        for key in map:
-            text = map[key]
-            text = self._strRefiner.refineElemTxt(text)
-            text = cltk.wtokenizeLatin(text)
-            text = cltk.removeLatStopWords(text)
-            text = cltk.lemmatizeLat(text)
-            map[key] = text
+        if output_statistics:
+            self.doTheMagic()
+        else:
+            cltk = self._cltk
+            map: dict[str] = self.getTextMap()
 
-        return map
+            for key in map:
+                text = map[key]
+                text = self._strRefiner.refineElemTxt(text)
+                text = cltk.wtokenizeLatin(text)
+                text = cltk.removeLatStopWords(text)
+                text = cltk.lemmatizeLat(text)
+                map[key] = text
 
+        return self.getTextMap()
 
     def doTheMagic(self):
         """
