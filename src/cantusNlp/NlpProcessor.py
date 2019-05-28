@@ -107,6 +107,14 @@ class NlpProcessor:
             self.outputToTxt(lemmas_with_source, base_path + "./" + dir_name + "/lemmas_with_source.txt")
             self.outputToTxt(lemmas_plain, base_path + "./" + dir_name + "/lemmas_plain.txt")
 
+            # write result to json
+            resultDict: dict = {
+                'deletedTokens': deleted_tokens,
+                'lemmasWithSource': lemmas_with_source,
+                'lemmas': lemmas_plain
+            }
+            self.write_dict_to_json(resultDict, base_path + "/" + dir_name + "/nlpResult.json")
+
             # voyant writing
             aggr_str = ""
             for word in lemmas_plain:
