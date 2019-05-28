@@ -159,7 +159,7 @@ class NlpProcessor:
         analDict['wordsNotKnownToLemmatizer'] = str(words_not_found)
         analDict['percentageOfWordsNotKnownToLemmatizer'] = str(no_match_percentage)
 
-        self.write_dict_to_json(analDict, self._resultDir + "./" + folder_to_create + "/analysisJson.json")
+        self.write_dict_to_json(analDict, self._resultDir + "./" + folder_to_create + "/analysis.json")
         return analDict
 
     def write_dict_to_json(self, dict_to_write: dict, path_with_name:str):
