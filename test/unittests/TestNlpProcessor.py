@@ -3,7 +3,7 @@ from src.cantusNlp.utils.FileReader import FileReader
 from src.cantusNlp.NlpProcessor import NlpProcessor
 
 
-nlp = NlpProcessor('','')
+nlp = NlpProcessor('', '')
 fr = FileReader()
 projectDir = str(fr.calcPath(__file__).parent.parent.parent)
 
