@@ -194,6 +194,13 @@ class NlpProcessor:
         f.close()
 
     def analyze_lemma(self, lemma_list: list) -> list:
+        """
+        Takes in a list of words, creates a list filled with dictionaries for each unique
+        with count of occurence in original given list.
+        :param lemma_list: List of lemmata
+        :return: List filled with dictionaries for each unique lemma
+        like: [{name:'lemma1',value:5},{name:'lemma2',value:7},...]
+        """
 
         uniques: set = set(lemma_list)
 
