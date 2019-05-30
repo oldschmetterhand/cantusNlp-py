@@ -182,7 +182,7 @@ class NlpProcessor:
         json.dump(dict_to_write, f)
         f.close()
 
-    def outputToTxt(self, text: str, path_with_name:str):
+    def outputToTxt(self, text: str, path_with_name: str):
         """
         Writes given file to given path (+filename).
         :param text: String to ouput to text file
@@ -192,5 +192,21 @@ class NlpProcessor:
         f = open(path_with_name, "w")
         f.write(str(text))
         f.close()
+
+    def analyze_lemma(self, lemma_list: list) -> list:
+
+        uniques: set = set(lemma_list)
+
+        lemma_uniques: list = []
+
+        for unique in uniques:
+            if unique in lemma_list:
+                lemma_uniques.append({
+                    'name': str(unique),
+                    'value': lemma_list.count(unique)
+                })
+
+        return lemma_uniques
+
 
 
