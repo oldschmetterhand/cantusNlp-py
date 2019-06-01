@@ -208,10 +208,14 @@ class NlpProcessor:
 
         for unique in uniques:
             if unique in lemma_list:
-                lemma_uniques.append({
-                    'name': str(unique),
-                    'value': lemma_list.count(unique)
-                })
+
+                lemma_count = lemma_list.count(unique)
+
+                if lemma_count > 100:
+                    lemma_uniques.append({
+                        'name': str(unique),
+                        'value': lemma_count
+                    })
 
         return lemma_uniques
 
