@@ -3,6 +3,7 @@ import src.cantusNlp.utils.FileReader as FileReader
 import src.cantusNlp.utils.XReader as Xreader
 import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
+from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 import os
 import json
 
@@ -25,6 +26,7 @@ class NlpProcessor:
         self._fileReader = FileReader.FileReader(self._dataPath)
         self._cltk = CltkOperator.CltkOperator()
         self._strRefiner = StringRefinery.StringRefinery()
+        self._nlpResultMap = NlpResultMap()
 
         self._textMap = {}  # initialize here
 
@@ -74,10 +76,12 @@ class NlpProcessor:
             for key in map:
                 text = map[key]
                 text = self._strRefiner.refineElemTxt(text)
-                text = cltk.wtokenizeLatin(text)
+                text, deleted_tokens = cltk.wtokenizeLatin(text, True)
                 text = cltk.removeLatStopWords(text)
-                text = cltk.lemmatizeLat(text)
-                map[key] = text
+                lemmas_plain, lemmas_with_source = cltk.lemmatizeLat(text, True)
+                map[key] = lemmas_plain
+
+                self._nlpResultMap.build_entry_from_cltk(key, text, deleted_tokens, lemmas_with_source)
 
         return self.getTextMap()
 
@@ -98,6 +102,8 @@ class NlpProcessor:
             text, deleted_tokens = cltk.wtokenizeLatin(text, True)
             text = cltk.removeLatStopWords(text)
             lemmas_plain, lemmas_with_source = cltk.lemmatizeLat(text, True)
+
+            self._nlpResultMap.build_entry_from_cltk(key, text, deleted_tokens, lemmas_with_source)
 
             base_path = self._resultDir
             dir_name = key.replace(".", "_")
