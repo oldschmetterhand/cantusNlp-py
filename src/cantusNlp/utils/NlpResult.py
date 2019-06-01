@@ -1,16 +1,16 @@
 
 from typing import List
-import src.cantusNlp.utils.nlpPhenomena.Lemma as Lemma
+from src.cantusNlp.utils.nlpPhenomena.Lemma import Lemma
 
 
 class NlpResult:
 
-    def __init__(self,
-                 list_of_lemma: List[Lemma] = None,
-                 words_not_known: List[str] = None,
-                 deleted_tokens: List[str] = None
-                ):
+    _lemma_list: List[Lemma]
+    _words_not_known: List[str]
+    _deleted_tokens: List[str]
 
+
+    def __init__(self, list_of_lemma: List[Lemma] = None, words_not_known: List[str] = None, deleted_tokens: List[str] = None):
         self._lemma_list: List[Lemma] = list_of_lemma
         self._words_not_known: List[str] = words_not_known
         self._deleted_tokens: List[str] = deleted_tokens
@@ -24,6 +24,20 @@ class NlpResult:
 
     def add_deleted_token(self, deleted_token: str):
         self._deleted_tokens.append(deleted_token)
+
+
+    def add_cltk_lemma_list(self, lemma_source_slashed: List[str]) -> List[Lemma]:
+
+        if len(self._lemma_list) > 1:
+            raise ValueError("There already is a filled lemma list inside the NlpResult. The list is: " + self._lemma_list)
+
+        for lemma_source_pair in lemma_source_slashed:
+            split_str = lemma_source_pair.split("/")
+            lemma = Lemma(split_str[1], split_str[0])
+            self.add_lemma(lemma)
+
+        return self._lemma_list
+
 
     def get_list_of_lemma(self) -> List[Lemma]:
         return self._lemma_list

@@ -2,8 +2,11 @@
 
 class Lemma:
 
-    def __init__(self, lemma: str, source: str = None, word_position: int = None):
+    _lemma: str
+    _source: str
+    _word_position: int
 
+    def __init__(self, lemma: str, source: str = None, word_position: int = None):
         self._lemma: str = lemma
         self._source: str or None = source
         self._word_position: int or None = word_position
