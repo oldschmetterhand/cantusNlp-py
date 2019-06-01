@@ -23,3 +23,9 @@ class Lemma:
         if not self._word_position:
             raise ValueError("No word position was defined at instantiation for the lemma: " + self._lemma)
         return self._word_position
+
+    def __str__(self) -> str:
+        string_repr: str =  "<LemmaClass> _lemma: {}, _source:{}, _word_position:{}"\
+            .format(self._lemma, self._source, self._word_position)
+
+        return string_repr
