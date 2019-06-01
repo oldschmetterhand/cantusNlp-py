@@ -1,12 +1,17 @@
 
 import json
+from typing import Dict
+from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 
 
 class NlpOutputter:
 
-    def __init__(self, result_dir: str):
+    _nlp_result_map: NlpResultMap
+
+    def __init__(self, result_dir: str, nlp_result_map: NlpResultMap):
         self._json = json
         self._result_dir = result_dir
+        self._nlp_result_map = nlp_result_map
 
     def output_to_txt(self, text: str, folder_file_name: str):
         """
@@ -40,3 +45,12 @@ class NlpOutputter:
         f = open(path, "w")
         json.dump(dict_to_write, f)
         f.close()
+
+
+    def write_result(self):
+
+        keys: list = self._nlp_result_map._result_map.keys()
+
+        for key in keys:
+            print(key)
+

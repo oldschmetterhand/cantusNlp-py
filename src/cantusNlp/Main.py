@@ -18,3 +18,6 @@ nlp.lemmatizeCorpus(True)
 
 # for lemma in nlp._nlpResultMap.get_result("Brixen.txt").get_list_of_lemma():
     # print(str(lemma))
+
+
+nlp.output_analyzis()

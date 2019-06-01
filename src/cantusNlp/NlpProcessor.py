@@ -4,6 +4,7 @@ import src.cantusNlp.utils.XReader as Xreader
 import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
+from src.cantusNlp.utils.NlpOutputter import NlpOutputter
 import os
 import json
 
@@ -27,6 +28,7 @@ class NlpProcessor:
         self._cltk = CltkOperator.CltkOperator()
         self._strRefiner = StringRefinery.StringRefinery()
         self._nlpResultMap = NlpResultMap()
+        self._nlp_outputter = NlpOutputter(resultDir, self._nlpResultMap)
 
         self._textMap = {}  # initialize here
 
@@ -225,5 +227,5 @@ class NlpProcessor:
 
         return lemma_uniques
 
-
-
+    def output_analyzis(self):
+        self._nlp_outputter.write_result()
