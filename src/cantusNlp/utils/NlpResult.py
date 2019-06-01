@@ -1,5 +1,6 @@
 
 from typing import List
+from typing import Dict
 from src.cantusNlp.utils.nlpPhenomena.Lemma import Lemma
 
 
@@ -35,6 +36,21 @@ class NlpResult:
             self.add_lemma(lemma)
 
         return self._lemma_list
+
+    def return_array_of_lemmas_dicts(self) -> List[Dict[str, Dict[str, str or int or None]]]:
+        if len(self._lemma_list) is 0:
+            raise ValueError("Can't transform a List of length 0! The Lemmalist is: " + self._lemma_list)
+
+        dict_arr: List[Dict[str, Dict[str, str or int or None]]] = []
+
+        for lemma in self._lemma_list:
+            lemma_dict, lemma_key = lemma.return_as_dictionary()
+            new_dict = {
+                lemma_key: lemma_dict
+            }
+            dict_arr.append(new_dict)
+
+        return dict_arr
 
     def get_list_of_lemma(self) -> List[Lemma]:
         return self._lemma_list
