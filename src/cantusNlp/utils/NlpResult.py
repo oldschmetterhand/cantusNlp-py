@@ -9,7 +9,6 @@ class NlpResult:
     _words_not_known: List[str]
     _deleted_tokens: List[str]
 
-
     def __init__(self, list_of_lemma: List[Lemma] = None, words_not_known: List[str] = None, deleted_tokens: List[str] = None):
         self._lemma_list: List[Lemma] = list_of_lemma
         self._words_not_known: List[str] = words_not_known
@@ -25,7 +24,6 @@ class NlpResult:
     def add_deleted_token(self, deleted_token: str):
         self._deleted_tokens.append(deleted_token)
 
-
     def add_cltk_lemma_list(self, lemma_source_slashed: List[str]) -> List[Lemma]:
 
         if len(self._lemma_list) > 1:
@@ -37,7 +35,6 @@ class NlpResult:
             self.add_lemma(lemma)
 
         return self._lemma_list
-
 
     def get_list_of_lemma(self) -> List[Lemma]:
         return self._lemma_list
