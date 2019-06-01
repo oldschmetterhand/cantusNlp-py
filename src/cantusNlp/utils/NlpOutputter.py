@@ -53,8 +53,16 @@ class NlpOutputter:
 
         for key in keys:
             print(key)
-            lemma_dicts = self._nlp_result_map.get_result(key).return_array_of_lemmas_dicts()
-            print(lemma_dicts)
+            cur_nlp_result = self._nlp_result_map.get_result(key)
 
-            print(self._nlp_result_map.get_result(key).get_deleted_tokens())
-            print(self._nlp_result_map.get_result(key).get_words_not_known())
+            lemma_dicts = cur_nlp_result.return_array_of_lemmas_dicts()
+            deleted_tokens = cur_nlp_result.get_deleted_tokens()
+            words_not_known = cur_nlp_result.get_words_not_known()
+
+            dict_to_write = {
+                "lemmata": lemma_dicts,
+                "deletedTokens": deleted_tokens,
+                "wordsNotKnown":words_not_known
+            }
+
+            self.write_dict_to_json(dict_to_write, str.replace(key, ".", "_") + "/lemmatizationResult.json")
