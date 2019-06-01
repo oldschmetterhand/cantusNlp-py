@@ -5,6 +5,7 @@ import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 from src.cantusNlp.utils.NlpOutputter import NlpOutputter
+from src.cantusNlp.utils.nlpPhenomena.NlpAnalyzer import NlpAnalyser
 import os
 import json
 
@@ -29,6 +30,7 @@ class NlpProcessor:
         self._strRefiner = StringRefinery.StringRefinery()
         self._nlpResultMap = NlpResultMap()
         self._nlp_outputter = NlpOutputter(resultDir, self._nlpResultMap)
+        self._nlp_analyser = NlpAnalyser(self._nlpResultMap)
 
         self._textMap = {}  # initialize here
 
@@ -229,3 +231,6 @@ class NlpProcessor:
 
     def output_lemmatization_result(self):
         self._nlp_outputter.write_lemmatization_result()
+
+    def analyse(self):
+        self._nlp_analyser.calculate_most_occurence_lemmata()
