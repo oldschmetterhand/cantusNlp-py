@@ -1,5 +1,8 @@
 
 
+from typing import Dict
+from typing import Tuple
+
 class Lemma:
 
     _lemma: str
@@ -23,6 +26,16 @@ class Lemma:
         if not self._word_position:
             raise ValueError("No word position was defined at instantiation for the lemma: " + self._lemma)
         return self._word_position
+
+    def return_as_dictionary(self) -> Tuple[Dict[str, str or int], str]:
+
+        lemma_as_dict = {
+            "lemma": self._lemma,
+            "source": self._source,
+            "word_position": self._word_position
+        }
+
+        return lemma_as_dict, self._lemma
 
     def __str__(self) -> str:
         string_repr: str =  "<LemmaClass> _lemma: {}, _source:{}, _word_position:{}"\

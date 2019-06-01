@@ -25,5 +25,19 @@ class Test_instantiation(unittest.TestCase):
         lemma = Lemma(test_data["lemma"])
         self.assertRaises(ValueError, lemma.get_word_position)
 
+
+class Test_return_as_dictionary(unittest.TestCase):
+
+    def test_dictionary_equal_to_read_in_dict(self):
+        lemma = Lemma(test_data["lemma"], test_data["source"], test_data["word_position"])
+        lemma_dict, key = lemma.return_as_dictionary()
+        self.assertDictEqual(test_data, lemma_dict)
+
+    def test_unique_key_is_lemma(self):
+        lemma = Lemma(test_data["lemma"], test_data["source"], test_data["word_position"])
+        lemma_dict, key = lemma.return_as_dictionary()
+        self.assertEquals(test_data["lemma"], lemma_dict["lemma"])
+
+
 if __name__ == '__main__':
     unittest.main()
