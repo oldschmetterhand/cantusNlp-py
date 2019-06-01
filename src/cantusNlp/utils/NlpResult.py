@@ -28,7 +28,7 @@ class NlpResult:
     def add_cltk_lemma_list(self, lemma_source_slashed: List[str]) -> List[Lemma]:
 
         if len(self._lemma_list) > 1:
-            raise ValueError("There already is a filled lemma list inside the NlpResult. The list is: " + self._lemma_list)
+            raise ValueError("There already is a filled lemma list inside the NlpResult. The list is: " + str(self._lemma_list))
 
         for lemma_source_pair in lemma_source_slashed:
             split_str = lemma_source_pair.split("/")
@@ -39,7 +39,7 @@ class NlpResult:
 
     def return_array_of_lemmas_dicts(self) -> List[Dict[str, Dict[str, str or int or None]]]:
         if len(self._lemma_list) is 0:
-            raise ValueError("Can't transform a List of length 0! The Lemmalist is: " + self._lemma_list)
+            raise ValueError("Can't transform a List of length 0! The Lemmalist is: " + str(self._lemma_list))
 
         dict_arr: List[Dict[str, Dict[str, str or int or None]]] = []
 
