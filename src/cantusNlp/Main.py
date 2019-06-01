@@ -20,4 +20,4 @@ nlp.lemmatizeCorpus(True)
     # print(str(lemma))
 
 
-nlp.output_analyzis()
+nlp.output_lemmatization_result()

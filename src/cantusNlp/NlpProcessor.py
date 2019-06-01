@@ -227,5 +227,5 @@ class NlpProcessor:
 
         return lemma_uniques
 
-    def output_analyzis(self):
-        self._nlp_outputter.write_result()
+    def output_lemmatization_result(self):
+        self._nlp_outputter.write_lemmatization_result()

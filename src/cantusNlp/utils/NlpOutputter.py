@@ -47,10 +47,14 @@ class NlpOutputter:
         f.close()
 
 
-    def write_result(self):
+    def write_lemmatization_result(self):
 
         keys: list = self._nlp_result_map._result_map.keys()
 
         for key in keys:
             print(key)
+            lemma_dicts = self._nlp_result_map.get_result(key).return_array_of_lemmas_dicts()
+            print(lemma_dicts)
 
+            print(self._nlp_result_map.get_result(key).get_deleted_tokens())
+            print(self._nlp_result_map.get_result(key).get_words_not_known())
