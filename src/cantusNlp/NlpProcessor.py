@@ -3,6 +3,8 @@ import src.cantusNlp.utils.FileReader as FileReader
 import src.cantusNlp.utils.XReader as Xreader
 import src.cantusNlp.utils.StringRefinery as StringRefinery
 import src.cantusNlp.utils.CltkOperator as CltkOperator
+from typing import List
+from typing import Dict
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 from src.cantusNlp.utils.NlpOutputter import NlpOutputter
 from src.cantusNlp.utils.nlpPhenomena.NlpAnalyzer import NlpAnalyser
@@ -232,5 +234,18 @@ class NlpProcessor:
     def output_lemmatization_result(self):
         self._nlp_outputter.write_lemmatization_result()
 
-    def analyse(self, min_lemma_occurence: int):
-        self._nlp_analyser.calc_lemma_occurence(min_lemma_occurence)
+    def analyse_lemma_occurence(self, min_lemma_occurence: int, write_to_file: bool = False) -> Dict[str, List[Dict[str, str or int]]]:
+        """
+
+        :param min_lemma_occurence:
+        :param write_to_file:
+        :return:
+        """
+        corp_lemma_occ: Dict[str, List[Dict[str, str or int]]] = self._nlp_analyser.calc_lemma_occurence(min_lemma_occurence)
+
+        if write_to_file:
+            for key in corp_lemma_occ.keys():
+                self._nlp_outputter.write_list_to_json(corp_lemma_occ.get(key), str.replace(key, ".", "_")
+                                                       + "/lemma_occurence.json")
+
+        return corp_lemma_occ

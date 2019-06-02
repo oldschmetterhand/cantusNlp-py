@@ -21,4 +21,4 @@ nlp.lemmatizeCorpus(True)
 
 
 nlp.output_lemmatization_result()
-nlp.analyse(100)
+nlp.analyse_lemma_occurence(100, True)

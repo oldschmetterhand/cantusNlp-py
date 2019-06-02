@@ -1,6 +1,7 @@
 
 import json
 from typing import Dict
+from typing import List
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 
 
@@ -46,7 +47,6 @@ class NlpOutputter:
         json.dump(dict_to_write, f)
         f.close()
 
-
     def write_lemmatization_result(self):
 
         keys: list = self._nlp_result_map._result_map.keys()
@@ -66,3 +66,10 @@ class NlpOutputter:
             }
 
             self.write_dict_to_json(dict_to_write, str.replace(key, ".", "_") + "/lemmatizationResult.json")
+
+    def write_list_to_json(self, list: List, folder_file_name: str):
+
+        path = self._result_dir + "/" + folder_file_name
+        f = open(path, "w")
+        json.dump(list, f)
+        f.close()
