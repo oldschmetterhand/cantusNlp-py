@@ -1,5 +1,6 @@
 
 import json
+import os
 from typing import Dict
 from typing import List
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
@@ -43,6 +44,7 @@ class NlpOutputter:
                                                    "Please consider defining your filename")
 
         path = self._result_dir + "/" + folder_file_name
+        print(path)
         f = open(path, "w")
         json.dump(dict_to_write, f)
         f.close()
@@ -53,6 +55,7 @@ class NlpOutputter:
 
         for key in keys:
             print(key)
+
             cur_nlp_result = self._nlp_result_map.get_result(key)
 
             lemma_dicts = cur_nlp_result.return_array_of_lemmas_dicts()

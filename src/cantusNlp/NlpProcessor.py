@@ -54,6 +54,10 @@ class NlpProcessor:
             # trying getting all the body texts.
             path = self._dataPath + "/" + fileName
 
+            # creating output folders
+            dir_name = fileName.replace(".", "_")
+            os.makedirs(self._resultDir + "/" + dir_name)
+
             # .txt or .xml
             if fileName.endswith(".xml"):
                 xTree = self._xreader.readXml(path)
