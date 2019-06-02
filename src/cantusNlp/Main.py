@@ -10,9 +10,8 @@ resultDir = str(projDirectory) + "/resources/analyzis"
 
 # then start nlp process
 nlp = NlpProcessor(dataDir, resultDir)
-nlp.loadCorpus("note")
+nlp.loadCorpus()
 nlp.lemmatizeCorpus()
-# nlp.lemmatizeCorpus()
 
 nlp.create_voyant_output()
 nlp.output_lemmatization_result()
