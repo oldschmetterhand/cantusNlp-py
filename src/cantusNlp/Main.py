@@ -14,11 +14,5 @@ nlp.loadCorpus("note")
 nlp.lemmatizeCorpus(True)
 # nlp.lemmatizeCorpus()
 
-# print(str(nlp._nlpResultMap.get_result("Brixen.txt").get_list_of_lemma()))
-
-# for lemma in nlp._nlpResultMap.get_result("Brixen.txt").get_list_of_lemma():
-    # print(str(lemma))
-
-
 nlp.output_lemmatization_result()
 nlp.analyse_lemma_occurence(100, True)

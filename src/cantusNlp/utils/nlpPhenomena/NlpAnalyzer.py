@@ -45,9 +45,7 @@ class NlpAnalyser:
                             'value': lemma_count
                         })
 
-
             corpus_occurent_lemma[key] = lemma_uniques
 
-        print(corpus_occurent_lemma)
         return corpus_occurent_lemma
 

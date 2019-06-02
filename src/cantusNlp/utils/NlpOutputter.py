@@ -68,7 +68,12 @@ class NlpOutputter:
             self.write_dict_to_json(dict_to_write, str.replace(key, ".", "_") + "/lemmatizationResult.json")
 
     def write_list_to_json(self, list: List, folder_file_name: str):
+        """
 
+        :param list: python list to write to json array.
+        :param folder_file_name:
+        :return:
+        """
         path = self._result_dir + "/" + folder_file_name
         f = open(path, "w")
         json.dump(list, f)
