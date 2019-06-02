@@ -92,6 +92,7 @@ class NlpProcessor:
                 map[key] = lemmas_plain
 
                 self._nlpResultMap.build_entry_from_cltk(key, text, deleted_tokens, lemmas_with_source)
+                self._createAnalysisJSON(key.replace(".", "_"), text)
 
         return self.getTextMap()
 
@@ -183,7 +184,7 @@ class NlpProcessor:
         analDict['wordsNotKnownToLemmatizer'] = str(words_not_found)
         analDict['percentageOfWordsNotKnownToLemmatizer'] = str(no_match_percentage)
 
-        self.write_dict_to_json(analDict, self._resultDir + "./" + folder_to_create + "/analysis.json")
+        self.write_dict_to_json(analDict, self._resultDir + "./" + folder_to_create + "/lemmatizationAnalysis.json")
         return analDict
 
     def write_dict_to_json(self, dict_to_write: dict, path_with_name:str):
