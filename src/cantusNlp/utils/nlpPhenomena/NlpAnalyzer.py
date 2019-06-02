@@ -11,7 +11,12 @@ class NlpAnalyser:
     def __init__(self, nlp_result_map: NlpResultMap):
         self._nlp_result_map = nlp_result_map
 
-    def calculate_most_occurence_lemmata(self, min_lemma_occurence: int) -> Dict[str, List[Dict[str, str or int]]]:
+    def calc_lemma_occurence(self, min_lemma_occurence: int) -> Dict[str, List[Dict[str, str or int]]]:
+        """
+
+        :param min_lemma_occurence:
+        :return:
+        """
 
         corpus_occurent_lemma: Dict[str, List[Dict[str, str or int]]] = {}
 
