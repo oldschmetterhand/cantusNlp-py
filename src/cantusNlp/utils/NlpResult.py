@@ -45,10 +45,7 @@ class NlpResult:
 
         for lemma in self._lemma_list:
             lemma_dict, lemma_key = lemma.return_as_dictionary()
-            new_dict = {
-                lemma_key: lemma_dict
-            }
-            dict_arr.append(new_dict)
+            dict_arr.append(lemma_dict)
 
         return dict_arr
 

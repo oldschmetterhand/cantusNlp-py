@@ -232,5 +232,5 @@ class NlpProcessor:
     def output_lemmatization_result(self):
         self._nlp_outputter.write_lemmatization_result()
 
-    def analyse(self):
-        self._nlp_analyser.calculate_most_occurence_lemmata()
+    def analyse(self, min_lemma_occurence: int):
+        self._nlp_analyser.calculate_most_occurence_lemmata(min_lemma_occurence)

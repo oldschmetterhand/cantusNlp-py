@@ -21,4 +21,4 @@ nlp.lemmatizeCorpus(True)
 
 
 nlp.output_lemmatization_result()
-nlp.analyse()
+nlp.analyse(100)
