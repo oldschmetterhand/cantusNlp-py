@@ -13,9 +13,11 @@ class NlpAnalyser:
 
     def calc_lemma_occurence(self, min_lemma_occurence: int) -> Dict[str, List[Dict[str, str or int]]]:
         """
-
-        :param min_lemma_occurence:
-        :return:
+        Counts the occurence of each individual lemmas and returns the result as dictionary.
+        :param min_lemma_occurence: Only lemmas higher equal occurence are returned.
+        :return: Dictionary with key for each read in file with file extension e.g. "xy.txt".
+        Dictionarie's value is a List of Dictionaries. Each dictionary is a lemma -> with properties
+        name, value, and source.
         """
 
         corpus_occurent_lemma: Dict[str, List[Dict[str, str or int]]] = {}
@@ -43,7 +45,7 @@ class NlpAnalyser:
                             'value': lemma_count
                         })
 
-            # print(str(lemma_uniques))
+
             corpus_occurent_lemma[key] = lemma_uniques
 
         print(corpus_occurent_lemma)
