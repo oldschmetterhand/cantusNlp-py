@@ -94,7 +94,7 @@ class NlpProcessor:
             self._nlpResultMap.build_entry_from_cltk(key, text, deleted_tokens, lemmas_with_source)
 
             if output_statistics:
-                self._createAnalysisJSON(key.replace(".", "_"), text)
+                self._output_cltk_lemma_deviation(key.replace(".", "_"), text)
 
         return self.getTextMap()
 
@@ -112,7 +112,7 @@ class NlpProcessor:
     def getTextMap(self) -> dict:
         return self._textMap
 
-    def _createAnalysisJSON(self, folder_to_create: str, refined_word_list: list) -> dict:
+    def _output_cltk_lemma_deviation(self, folder_to_create: str, refined_word_list: list) -> dict:
         """
         Calls the analyzeCltkLemmaDeviation method from the CltkOperator.py and writes result to
         a json file with values for words not known to the cltk lemmatizer.
