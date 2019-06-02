@@ -14,5 +14,6 @@ nlp.loadCorpus("note")
 nlp.lemmatizeCorpus()
 # nlp.lemmatizeCorpus()
 
+nlp.create_voyant_output()
 nlp.output_lemmatization_result()
 nlp.analyse_lemma_occurence(100, True)

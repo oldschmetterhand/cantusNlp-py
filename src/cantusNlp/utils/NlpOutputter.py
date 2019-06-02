@@ -3,6 +3,7 @@ import json
 import os
 from typing import Dict
 from typing import List
+from typing import Tuple
 from src.cantusNlp.utils.NlpResultMap import NlpResultMap
 
 
@@ -81,3 +82,22 @@ class NlpOutputter:
         f = open(path, "w")
         json.dump(list, f)
         f.close()
+
+    def output_for_voyant(self) -> Dict[str, str]:
+
+        corpora_keys = self._nlp_result_map.get_available_keys()
+
+        voyant_dict: Dict[str, str] = {}
+
+        for corpus in corpora_keys:
+            lemma_list = self._nlp_result_map.get_result(corpus).get_list_of_lemma()
+
+            aggr_lemma: str = ""
+            for lemma in lemma_list:
+                aggr_lemma += (lemma.get_lemma() + " ")
+
+            self.output_to_txt(aggr_lemma, str.replace(corpus, ".", "_") + "/voyantLemma.txt")
+
+            voyant_dict[corpus] = aggr_lemma
+
+        return voyant_dict

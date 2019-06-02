@@ -253,3 +253,6 @@ class NlpProcessor:
                                                        + "/lemma_occurence.json")
 
         return corp_lemma_occ
+
+    def create_voyant_output(self) -> Dict[str, str]:
+        return self._nlp_outputter.output_for_voyant()

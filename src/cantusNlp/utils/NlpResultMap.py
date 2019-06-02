@@ -13,6 +13,9 @@ class NlpResultMap:
         self._result_map = {}
         self.set_refactored_source_corpus = None
 
+    def get_available_keys(self) -> object:
+        return self._result_map.keys()
+
     def add_nlp_result(self, result: NlpResult, key_name: str):
         self._result_map[key_name] = result
 
