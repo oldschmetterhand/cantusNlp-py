@@ -135,11 +135,15 @@ class NlpProcessor:
 
     def analyse_lemma_occurence(self, min_lemma_occurence: int, write_to_file: bool = False) -> Dict[str, List[Dict[str, str or int]]]:
         """
-
-        :param min_lemma_occurence:
-        :param write_to_file:
-        :return:
+        Calculates the number of occurences of calculated lemmatas (for each read in corpus)
+        :param min_lemma_occurence: number of occurences of lemma so that it is included in the return/result
+        :param write_to_file: Boolean if json output should be generated (lemmataOccurences.json will be created in
+        result directory in the corpuse's folder)
+        :return: Dictionary with Lemmata and occurence. Like: {"corpus_xyz":[{name:"xyz",value:123},...]},...}
         """
+        if(len(self._nlpResultMap.get_available_keys()) == 0):
+            raise BrokenPipeError("You can only analyze lemmatas if you've previously lemmatized at least one corpus!")
+
         corp_lemma_occ: Dict[str, List[Dict[str, str or int]]] = self._nlp_analyser.calc_lemma_occurence(min_lemma_occurence)
 
         if write_to_file:
