@@ -21,6 +21,9 @@ class NlpProcessor:
     _fileReader: FileReader
     _cltk: CltkOperator
     _strRefiner: StringRefinery
+    _nlpResultMap: NlpResultMap
+    _nlp_outputter: NlpOutputter
+    _nlp_analyzer: NlpAnalyser
 
     def __init__(self, dataPath: str, resultDir: str):
         self._dataPath = dataPath
