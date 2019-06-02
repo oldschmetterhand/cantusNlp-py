@@ -131,6 +131,8 @@ class NlpProcessor:
         return analDict
 
     def output_lemmatization_result(self):
+        if (len(self._nlpResultMap.get_available_keys()) == 0):
+            raise BrokenPipeError("You can only analyze lemmatas if you've previously lemmatized at least one corpus!")
         self._nlp_outputter.write_lemmatization_result()
 
     def analyse_lemma_occurence(self, min_lemma_occurence: int, write_to_file: bool = False) -> Dict[str, List[Dict[str, str or int]]]:
@@ -154,4 +156,6 @@ class NlpProcessor:
         return corp_lemma_occ
 
     def create_voyant_output(self) -> Dict[str, str]:
+        if (len(self._nlpResultMap.get_available_keys()) == 0):
+            raise BrokenPipeError("You can only analyze lemmatas if you've previously lemmatized at least one corpus!")
         return self._nlp_outputter.output_for_voyant()
