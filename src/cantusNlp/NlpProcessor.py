@@ -145,7 +145,7 @@ class NlpProcessor:
         if write_to_file:
             for key in corp_lemma_occ.keys():
                 self._nlp_outputter.write_list_to_json(corp_lemma_occ.get(key), str.replace(key, ".", "_")
-                                                       + "/lemma_occurence.json")
+                                                       + "/lemmataOccurences.json")
 
         return corp_lemma_occ
 
