@@ -5,7 +5,7 @@ class XReader:
     def __init__class(self):
         print("")
 
-    def readXml(self, path: str):
+    def readXml(self, path: str) -> ElementTree:
         """"
         Reads in given xml via using the etree library.
         :param path: String of the path to the specific XML document.
@@ -17,7 +17,7 @@ class XReader:
 
         return ElementTree.parse(path)
 
-    def getRootTag(self, xTree: ElementTree):
+    def getRootTag(self, xTree: ElementTree) -> str:
         """
         Reads given xml (see param), accesses the root element
         and calcs the it's tagname.
@@ -28,7 +28,7 @@ class XReader:
         rootTag: str = xTree.getroot().tag
         return rootTag
 
-    def getTeiBodyText(self, xTree: ElementTree, elemToEmpty: str = None):
+    def getTeiBodyText(self, xTree: ElementTree, elemToEmpty: str = None) -> str:
         """
         Uses Element.itertext() on the body element of given TEI file. Then retrieves
         the text and concatinates it to one string WITHOUT string refining. (=whitespaces
@@ -55,7 +55,7 @@ class XReader:
 
         return concatStr
 
-    def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str):
+    def _emptyElem(self, elemToFilter: ElementTree.Element, tag: str) -> ElementTree.Element:
         """
         Sets the text value elements with given tagname in given selection to "".
         Does not aplly to child elements with different tagname.
