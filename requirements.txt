@@ -1,7 +1,7 @@
 cltk==0.1.102
 gitdb2==2.0.5
 GitPython==2.1.11
-nltk==3.4
+nltk==3.4.5
 python-crfsuite==0.9.6
 pyuca==1.2
 PyYAML==3.13
